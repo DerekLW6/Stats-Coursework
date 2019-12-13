@@ -1,0 +1,353 @@
+
+---
+title: "IDS 702 Final Project: Attacks in WWI/WWII"
+author: "Derek Wales"
+date: "10DEC19"
+output:
+  pdf_document: default
+  html_document:
+    highlight: pygments
+    theme: spacelab
+---
+```{r options, echo=FALSE}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE,
+                      fig.pos = "H")
+```
+
+```{r setup, include=FALSE}
+# DO NOT ALTER CODE IN THIS CHUNK
+# The very first time you use this R markdown file, you should install each of the packages below.
+# The same goes for other packages you might decide to use
+# Remember that you only need to install each R package once in R (ever -- unless you change computers).
+# All you need to do whenever you need to use the package again (after restarting the R session),
+# is to use the library function to call the package.
+# For example, type install.packages("knitr") in the console to install the knitr package. 
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+library(dplyr)
+library(ggplot2)
+library(knitr)
+library(leaps)
+library(dplyr)
+library(lattice)
+library(lsr)
+library(MASS)
+library(arm)
+library(pROC)
+library(e1071)
+library(caret)
+library(xtable)
+library(mice) 
+library(lme4)
+library(VIM)
+library(ggpubr)
+library(gridExtra)
+```
+
+* * *
+```{r echo=FALSE}
+# Reading in first DF
+#setwd('C:\\Users\\derek\\Desktop\\MIDS 1st Semester\\Modeling and Representing Data\\__Final #Project\\__Swing\\NOV15_HM')
+
+war_df <- read.csv('R_war_df.csv')
+```
+
+### Summary:
+
+For this report I was analyzing a data set that contained hundreds of battles dating from the 14th century all the way to the 1990s. My goal was to determine the key factors that would make an attack successful in both World War I and World War II. To do this I used a number of different statistical analysis techniques that included Exploratory Data Analysis (EDA), Critical Thinking, Hierarchical Modeling (for both conflict and location) and ultimately logistic regression. Optimizing on Bayesian Information Criterion or BIC. I chose this because it rewards less having fewer terms while maintaining accuracy. This means its easier for Commanders to implement the model. These steps ultimately led to the model below. 
+
+### Model:
+
+\[\log(\frac{\pi_i}{1-\pi_i}) = \beta_0 + \beta_1 Surprise + \beta_2 Air.Power + \beta_3 Morale +  \beta_4 Initiative\ + \beta_5 Leadership\]
+where $y_i|x_i \sim$ Bernouilli($\pi_i$)
+
+### Introduction:
+
+The United States Army strongly attempts to minimize casualties, because it preserves combat power for future operations and boosts morale. Because of this, the Army commissioned the Concepts and Analysis Agency starting in 1992 began to look at more than 600 battles across several hundred years to see if there were empirical relationships between many of the factors in battle. 
+
+The research team looked at more than 200 different factors from tangible things like how many troops each side had at the start of the battle to intangible things like the organization’s morale. 
+
+The original document compared all these factors together for a period spanning more than 300 years. 
+
+For my project, I took this data and focused on attacks in World War I and World War II to determine what key factors increased the chances of winning in battle. 
+
+### Data and Exploratory Data Analysis:
+
+The first task for this project was understanding the dataset from the study and then putting it into a manageable format that could be modeled. To do this I used several different tools and techniques prior to putting the data into R. The first step was getting a scope of the data in the original Army study. This was done by first reading the data into Python where I discovered that there were more than 200 different predictor values. I then pared my data down by selecting only World War I and II battles and began to select meaningful variables. 
+
+For variable selection I used my domain knowledge/statistic techniques to eliminate variables that were either highly correlated or the same (such as the width of the attacking army and the width of the defending army’s defense because they were usually the same in both World War I and II) and combining things like the defending terrain and attacking terrain. I also removed non-applicable values for the modern era, such as the amount of cavalry that both the attackers and the defenders had available.    
+
+Additionally, the study considered not only the army that was attacking or defending, but also who the commanders were. But there were not enough occurrences in the dataset for them to be meaningful predictors (most of them appeared only once or twice throughout the dataset). The data was also grouped across dozens of countries that were often bordering or in the same region. So, I grouped them into the following regions: Europe, North Africa, Middle East, Russian Empire/Soviet Union (WW1/WW2), and the Pacific. 
+
+The original data was also organized by unit (aka 2nd Panzer Division, 1st Marine Division, etc.). These were also grouped into their corresponding nation’s armies of British, French, American, Japanese, Soviet Union, and German. I aligned the data based purely upon the nation of origin, since this is an excellent proxy for that nation’s training program, amount of training and soldier experience, weapon types and sophistication, officer quality, experience and tactical acumen, and overall logistic support. The military also considered the weather and terrain when conducting the study when analyzing the results of the battles. So, I renamed these variables to be more descriptive, and grouped the multiple columns into combined discriptors (things like sunny and hot or overcast and raining).
+
+Next, I went into feature engineering. For this data the Army not only looked at how many troops were on the attacking side and defending side at the start of the battle, but also how many troops they had in reserves (not committed to any particular aspect of the battle) and how much each side received in reinforcements during the battle. Looking at this I realized what was important was not necessarily the quantity of troops but the ratio of troops at the start of the battle (having 10,000 troops doesn’t matter if the other guy also has 10,000 troops, but it does really matter if the other guy only has 1,000 troops). I did the same thing for the equipment each side had as well (I converted the number of tanks and artillery into ratios indexed off the attacker instead of raw numbers).
+
+With all of this complete I had a much more manageable dataset going from 208 predictor variables to 22. These variables were all indexed off of the Attacker and on a scale -3 to 3 (negative numbers were advantages to the defenders and positive to the attacker with neutral being 0) ratios attacker/defender, or named factor variables. The final variable list was: War, Location, Attacker, Defender, Defense, Terrain, Weather, Surprise (-3 to 3), Air_Power (-3 to 3), Personnel_Ratio, Tanks_Ratio, Artillery_Ratio, Leadership (-3 to 3), Training (-3 to 3), Morale (-3 to 3), Logistics (-3 to 3), Momentum (-3 to 3, your success in recent operations), Intelligence (-3 to 3, how much you know about the enemy in terms of strength and location), Initiative (-3 to 3, wheter you or the enemy is determining the events going on in the battle), Attack_Scheme (frontal attack, flank attack, etc), Attack_Year, Attack_Month.  
+
+I then was able to read these variables into R. Upon initial inspection I had a wide spread in terms of the amount of missing data. Some categories such tanks ratio had 50% of values missing/unknown (because even though they were used in WWI it is not well documented). 
+```{r echo=FALSE, fig.height=3, fig.width=6}
+# Mice Plots go Here
+# Fixing Missing Values
+war_df$Terrain <- ifelse(war_df$Terrain == 0, NA, war_df$Terrain) #
+war_df$Weather <- ifelse(war_df$Weather == 'Unknown', NA, war_df$Weather) #
+war_df$Surprise <- ifelse(war_df$Surprise == 9, NA, war_df$Surprise) #
+war_df$Air.Power <- ifelse(war_df$Air.Power == 9, NA, war_df$Air.Power) #
+war_df$Personnel_R <- ifelse(war_df$Personnel_R < 0, NA, war_df$Personnel_R) #
+war_df$Tanks_R <- ifelse(war_df$Tanks_R < 0, NA, war_df$Tanks_R) #
+war_df$Tanks_R <- ifelse(war_df$Tanks_R == 0, NA, war_df$Tanks_R) #
+war_df$Artillery_R <- ifelse(war_df$Artillery_R < 0, NA, war_df$Artillery_R) #
+war_df$Artillery_R <- ifelse(war_df$Artillery_R > 10, NA, war_df$Artillery_R) #
+war_df$Leadership <- ifelse(war_df$Leadership == -9, NA, war_df$Leadership) #
+war_df$Training <- ifelse(war_df$Training == -9, NA, war_df$Training) #
+war_df$Morale <- ifelse(war_df$Morale == -9, NA, war_df$Morale) #
+war_df$Logisitics <- ifelse(war_df$Logisitics == -9, NA, war_df$Logisitics)
+war_df$Momentum <- ifelse(war_df$Momentum == -9, NA, war_df$Momentum) #
+war_df$Intelligence <- ifelse(war_df$Intelligence == -9, NA, war_df$Intelligence) #
+war_df$Initiative <- ifelse(war_df$Initiative == -9, NA, war_df$Initiative) #
+war_df$Attack.Scheme <- ifelse(war_df$Attack.Scheme == 'Unknown', NA, war_df$Attack.Scheme)
+
+# Creating a new dataframe
+war_df_clean = war_df
+colnames(war_df_clean)[colnames(war_df_clean)=="Logisitics"] <- "Logistics"
+
+war_df_clean2 = subset(war_df_clean, select = -c(X,Unnamed..0,Unnamed..0.1, ISEQNO, NAME))
+
+war_df_imp <- mice(war_df_clean2, m=3, defaultMethod= "pmm", print=F)
+
+# saveRDS(war_df_imp,'war_df_imp_s')
+# 
+# war_df_imp1 <- readRDS('war_df_imp_s')
+
+# Also using a density plot
+#densityplot(war_df_imp)
+
+# My missing Patters and are not making sense # Changed numbers to FALSE
+aggr(war_df_clean2,col=c("lightblue3","darkred"),numbers=FALSE,sortVars=FALSE,labels=names(war_df_clean2),
+     cex.axis=.6,gap=1,ylab=c("Proportion missing","Missingness pattern"))
+```
+
+With the missing data imputed I could then move into the Exploratory Data Analysis.
+
+I started with the assumption that this would make a hierarchal model with differing intercepts based upon WW1 and WW2. 
+
+I started my analysis by doing the Chi Squared test on many of the predictor variables. Although many of the obvious things did initially seem to be significant. The p values were lower for many of the intangible characteristics.
+
+As I continued going through the data some of the results were not what I was expecting. There was not very much difference between the two conflicts. In military history circles, the trench warfare of WW1 was considered radically different from the Blitzkrieg or maneuver warfare of WW2, but this proved not to be the case from the standpoint of which variables determined success. This was validated when I built the initial model and there was no difference in the variance of the two models. With that in mind I then decided to look at a varying intercepts model based upon the location where the battle took place instead of the conflict itself.
+
+Although slightly more informative than the conflict, including random intercepts by location proved to have little effect on the final model.  
+
+### Examples of EDA from the Two Initial Modeling Approaches
+```{r echo=FALSE, fig.height=4, fig.width=8}
+#setwd('C:\\Users\\derek\\Desktop\\MIDS 1st Semester\\Modeling and Representing Data\\__Final Project\\19NOV19')
+df = read.csv('analysis_df.csv')
+
+# Fixing Win value
+df$Win <- ifelse(df$Win == 1, 1, 0)
+
+#### Starting EDA
+war_df <- df
+war_df$Win <- as.factor(war_df$Win)
+
+# Troops Ratio 
+troops_plot_war = ggplot(war_df, aes(x=Win, y=Personnel_R,  fill=WAR))+
+  geom_boxplot() + 
+  ylab('Troops Ratio') +
+  xlab('Win vs Not Win') +
+  ggtitle('Troops Ratio')
+
+# Troops Ratio 
+troops_plot_location = ggplot(war_df, aes(x=Win, y=Personnel_R,  fill=Location))+
+  geom_boxplot() + 
+  ylab('Troops Ratio') +
+  xlab('Win vs Not Win') +
+  ggtitle('Troops Ratio')
+
+grid.arrange(troops_plot_war,troops_plot_location, ncol = 2)
+```
+But what was insightful is that many of the intangibles such as surprise, leadership, and initiative were even stronger predictors than how many troops each unit had. In military terms, they are significant force multipliers. They have an outsized impact compared to their raw economic cost.
+```{r echo=FALSE, fig.height=4, fig.width=8}
+# Surprise
+surprise_plot = ggplot(war_df, aes(x= Surprise, fill =  Win)) +  geom_bar() + ggtitle('Surprise is Key') 
+
+# Initiative  (Gloria Political Science PhD)
+initiative_plot = ggplot(war_df, aes(x= Initiative, fill =  Win)) +  geom_bar() + ggtitle('Initiative is Critical')
+
+grid.arrange(surprise_plot,initiative_plot, ncol = 2)
+```
+This is significant because it means that enhanced planning to achieve initiative and surprise can be more important than how much is spent on weapons systems or soldiers. As a corollary, there may be technologies that enhance surprise and initiative that are relatively low in cost that represent an excellent investment (such as recon planes in WWII or night vision in the current era that allow you to detect the enemy before they detect you).
+
+### Model Selection Process and Assessment:
+
+As mentioned earlier, I was trying to build a model based upon BIC, and I had assumed a hierarchal model would give me better results. First starting with varying intercepts by conflict, then with varying intercepts by location. Before ultimately discovering that standard logistic regression preformed the best.
+
+My first attempt used the following model to start and then I progressively removed terms to reach a better BIC: 
+
+model_0 <- glmer(Win  ~ (1|WAR) + Location + Attacker + Defender + Defense + Terrain + Weather
+                  + Surprise + Air.Power + Personnel_R + Tanks_R + Artillery_R + Leadership 
+                  + Training + Morale + Logistics + Momentum + Intelligence + Initiative 
+                  + Attack_Scheme, data = war_df, family = binomial)
+                  
+My initial indicator that the hierarchal model was not necessary was the variance and standard deviation were both zero. After some additional analysis I repeated some EDA on the various variables and decided to determine if a varying intercepts model based upon location.
+
+For the second model I ran the code below:
+
+model_1 <- glmer(Win  ~ (1|Location) + WAR + Attacker + Defender + Defense + Terrain + Weather
+                  + Surprise + Air.Power + Personnel_R + Tanks_R + Artillery_R + Leadership 
+                  + Training + Morale + Logistics + Momentum + Intelligence + Initiative 
+                  + Attack_Scheme, data = war_df, family = binomial)
+                  
+During this I discovered that only these predictors were significant in determining whether an attack would be successful: 
+
+DefenderBritish Army, DefenderFrench Army, DefenseFortified Defense, Surprise, Air.Power, Artillery_R, Leadership, Training, Initiative, Attack_Schemefrontal_attack, and Attack_Schemeriver_crossing
+
+I then began to use various combinations and interaction terms to get as low of a BIC as possible. But I noticed the standard deviation and variance between the five locations were 4e-14 and 2e-07. Because of this I decided to explore whether or not a standard logistic regression would perform better.
+
+Again repeating EDA I ran stepwise on a standard logistic regression with all 22 variables, in addition to several other tests to find the model listed below with the lowest BIC of 353.97, lower than both hierarchal models.
+
+### Final Model
+
+\[\log(\frac{\pi_i}{1-\pi_i}) = \beta_0 + \beta_1 Surprise + \beta_2 Air.Power + \beta_3 Morale +  \beta_4 Initiative\ + \beta_5 Leadership\]
+where $y_i|x_i \sim$ Bernouilli($\pi_i$)
+
+### Interpretation/Coefficients (Exponentiated)
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+Intercept & Surprise & Air.Power & Morale & Initiative & Leadership \\ 
+  \hline
+0.3408395 & 1.8745726 & 1.9926527 &  2.2902150 & 3.0185522 &  2.7752378 \\ 
+   \hline
+\end{tabular}
+\end{table}
+ 
+What this means that you start with a 34% chance of winning if Surprise, Air.Power, Morale, Initiative, and Leadership are at parity with the defender (recall it was -3 to 3 indexed off of the attacker, with zero being both sides are equal). Meaning that you can more than triple your odds of winning by having the initiative.
+
+### Model Performance 
+
+With the odds listed above the model performed well, especially considering the model was on something as chaotic as a battlefield. Maintaining a 75.4% accuracy rating (guessing a true positive or a true negative) an 0.823 ROC, and a 0.823 sensitivity (meaning it had high chance of predicting a true positive vs a false negative). The model did not perform as well with true negatives, maintaining 0.648 for specificity.
+What this means in application is Commanders on the Battlefield can use this model to reliably determine if their attack will be successful, but it will not be as reliable in determining if their attack will be unsuccessful. 
+
+An additional note about the data is that since Troops and Equipment levels were generally similar, this means effects of having a significant numbers advantage over the enemy could not captured in the model. 
+```{r echo=FALSE, fig.height=3, fig.width=4}
+
+```
+
+```{r echo=FALSE, fig.height=3, fig.width=6}
+
+```
+
+### Conclusion/Remarks:
+
+In completing this project the model shows that intangible factors are just as important as tangible ones. Specifically, surprise, leadership, morale, and initiative had an outsized effect on victory. This holds true for both the first and second world wars. 
+
+### Future Research
+
+For future research it would be interesting to see how accurate the model is on other conflicts later in the 20th century to test its applicability to the modern battlefield. 
+
+\newpage
+
+## Appendix: R Code 
+
+## GitHub Repo: 
+https://github.com/DerekLW6/StatsProject/tree/master/GIT
+
+```{r, fig.height=4, fig.width=6}
+
+densityplot(war_df_imp)
+
+chisq.test(table(war_df[,c("Attacker","Win")]))         #p-value = 0.009699 
+chisq.test(table(war_df[,c("Defender","Win")]))         #p-value = 0.006987 
+chisq.test(table(war_df[,c("Defense","Win")]))          #p-value = 0.06264 
+chisq.test(table(war_df[,c("Terrain","Win")]))          #p-value = 0.08479
+chisq.test(table(war_df[,c("Weather","Win")]))          #p-value = 0.2219 
+chisq.test(table(war_df[,c("Attack_Scheme","Win")]))    #p-value = 0.4603
+chisq.test(table(war_df[,c("Surprise","Win")]))         #p-value = 0.0003194 ### Mention something
+
+ggplot(war_df, aes(x= Surprise, color =  Win)) +  geom_histogram(alpha =.45) + ggtitle('Surprise is Key in Successful Attacks')
+
+# Morale - Morale is the greatest single factor in successful war. 
+ggplot(war_df, aes(x= Morale, color = Win)) +  geom_histogram(alpha = .45) + ggtitle('Most Important Factor in Successful Wars')
+
+# Initiative Army Doctrinal Publication 3-0 -> Seize, retain, and exploit the initiative
+# The power of making our adversary's movements conform. to our own.
+ggplot(war_df, aes(x= Initiative, color = Win)) +  geom_histogram(alpha = .45) + ggtitle('Initiative is Critical to Success')
+
+# Intelligence
+ggplot(war_df, aes(x= Intelligence, color = Win)) +  geom_histogram(fill = "white")
+
+# Doing Stepwise on the main model
+full_model <- glm(Win  ~ Location + WAR + Attacker + Defender + Defense + Terrain + Weather + Surprise + Air.Power + Personnel_R + Tanks_R + Artillery_R + Leadership  + Training + Morale + Logistics + Momentum + Intelligence + Initiative + Attack_Scheme, family = binomial, war_df)
+
+#BIC_both <- step(full_model, direction = "backward", trace = 0)
+#BIC(BIC_both)
+
+#BIC_backward$call
+
+# ## Building a Model with War as the intercept.
+# model_1 <- glmer(Win  ~ (1|Location) + WAR + Attacker + Defender + Defense + Terrain + Weather
+#                  + Surprise + Air.Power + Personnel_R + Tanks_R + Artillery_R + Leadership
+#                  + Training + Morale + Logistics + Momentum + Intelligence + Initiative
+#                  + Attack_Scheme, data = war_df, family = binomial)
+# summary(model_1)
+
+#Let's add a random slope
+# mercreglmerintslope <- lmer(mercury ~ length_c + ( 1 + length_c  | station), data = bass) 
+# summary(mercreglmerintslope)
+
+# # exp(model_final)
+# # BIC(model_final) 
+# 
+# # model_final2 <- glm(Win ~  Surprise + Air.Power + Morale + Initiative + Leadership, 
+# #                 family = binomial,  data = war_df)
+# # BIC(model_final2)
+# #Accuracy/Sensitivity/Specificity
+# Conf_mat <- confusionMatrix(as.factor(ifelse(fitted(model_final2) >= .5, "1","0")),
+#                             war_df$Win,positive = "1")
+# Conf_mat$table
+# Conf_mat$overall["Accuracy"];
+# Conf_mat$byClass[c("Sensitivity","Specificity")]
+# # ROC
+# roc(war_df$Win,fitted(model_final2),plot=T,print.thres=.5,
+#     legacy.axes=T, print.auc = T, print.auc.y = .4, col="red3")
+
+
+#### Here you did stuff ###
+
+model_final <- glm(Win ~  Surprise + Air.Power + Morale + Initiative + Leadership, 
+                family = binomial,  data = war_df)
+
+### Model Validation/ROC Curve ### 
+exp(confint(model_final, level = 0.95))
+
+# Model Validation Code 
+# Testing to see if we have any residuals
+rawresid1 <- residuals(model_final,"resp")
+
+#binned residual plot
+binnedplot(x=fitted(model_final),y=rawresid1,xlab="Pred. probabilities",
+           col.int="red4",ylab="Avg. residuals",main="Binned residual plot",col.pts="navy")
+
+#binned residual plot
+# binnedplot(x=fitted(model_final),y=rawresid1,xlab="Pred. probabilities",
+#            col.int="red4",ylab="Avg. residuals",main="Binned residual plot",col.pts="navy")
+
+#Accuracy/Sensitivity/Specificity
+Conf_mat <- confusionMatrix(as.factor(ifelse(fitted(model_final) >= .5, "1","0")),
+                            war_df$Win,positive = "1")
+Conf_mat$table
+Conf_mat$overall["Accuracy"];
+Conf_mat$byClass[c("Sensitivity","Specificity")]
+
+# ROC
+roc(war_df$Win,fitted(model_final),plot=T,print.thres=.5,
+    legacy.axes=T, print.auc = T, print.auc.y = .4, col="red3")
+
+
+```
+* * *
+
+
+

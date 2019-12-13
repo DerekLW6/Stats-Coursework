@@ -1,0 +1,223 @@
+---
+title: "NBA Stats Lab Team"
+author: "Derek Wales and Ravitashaw Bathla"
+date: "9/23/2019"
+output:
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+# DO NOT ALTER CODE IN THIS CHUNK
+# The very first time you use this R markdown file, you should install each of the packages below.
+# The same goes for other packages you might decide to use
+# Remember that you only need to install each R package once in R (ever -- unless you change computers).
+# All you need to do whenever you need to use the package again (after restarting the R session),
+# is to use the library function to call the package.
+# For example, type install.packages("knitr") in the console to install the knitr package. 
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(out.width='250px', dpi=200)
+library(knitr)
+library(dplyr)
+library(ggplot2)
+library(regclass)
+library(rms)
+library(Epi)
+library(pgraph)
+library(pROC)
+library(caret)
+```
+
+```{r}
+#Loading Data for NBA
+setwd("C:\\Users\\derek\\Desktop\\MIDS Program\\.Mids 1st Semester\\.GIT Organization\\Stats Assignments\\NBA_Record_Prediction")
+nba <- read.csv("nba_games_stats.csv",header = TRUE,sep = ",",stringsAsFactors = FALSE)
+
+# Set factor variables
+nba$Home <- factor(nba$Home)
+nba$Team <- factor(nba$Team)
+nba$WINorLOSS <- factor(nba$WINorLOSS)
+
+# Convert date to the right format
+nba$Date <- as.Date(nba$Date, "%Y-%m-%d")
+
+# Also create a binary variable from WINorLOSS. 
+# This is not always necessary but can be useful for R functions that prefer numeric 
+# binary variables to the original factor variables
+nba$Win <- rep(0,nrow(nba))
+nba$Win[nba$WINorLOSS=="W"] <- 1
+
+# I picked the Lakers! 
+nba_reduced <- nba[nba$Team == "LAL", ]
+
+# Set aside the 2017/2018 season as your test data
+nba_reduced_train <- nba_reduced[nba_reduced$Date < "2017-10-01",]
+nba_reduced_test <- nba_reduced[nba_reduced$Date >= "2017-10-01",]
+```
+
+#### 1. Make exploratory plots to explore the relationships between Win and the following variables: Home, TeamPoints, FieldGoals., Assists, Steals, Blocks and Turnovers. Don’t include any of the plots, just briefly describe the relationships.
+
+### Note for all Questions we used the Lakers as our team.
+
+The plots revealed the obvious (the more the TeamPoints/FieldGoals./Assists/Blocks, the more likely the team will win). There were several elements that were interesting
+
+1. The plots of Turnovers to Win ratio was close (with the winning/losing team being within 3 Turnovers each) and the Home team wins nearly 60% of the time. 
+
+2. Home played a very important factor in determining the Winning of the game. Based upon the result of the chi-squared test, the p-value was also very significant, indicating the statistical significance of Home on winning (Win)
+
+Refer to *Appendix Q1* for all the plots and chi-sqaured test result. 
+
+
+#### 2. There are several combinations of variables we should not include as predictors in the logistic model. Identify at least two pairs and explain in at most two sentences, why we should not include them in the model at the same time.
+
+*FieldGoals. - TotalPoints* and *Turnovers - DefensiveSteals* are both highly correlated because the vast majority of points scored in a basketball game are from field goals and many of the turnovers in basketball are when the opponent steals the ball. Since the correlational coefficient is high (*Appendix Q2*), this results into the problem of multicollinearity and, therefore, we should not include them in the model at the same time.
+
+
+#### 3. Fit a logistic regression model for Win (or WinorLoss) using Home, TeamPoints, FieldGoals., Assists, Steals, Blocks and Turnovers. as your predictors. Using the vif function, are there are any concerns regarding multicollinearity in this model?
+
+Based upon the benchmarks if the VIF value is 1 then its not correlated, 2-5 moderately correlated, and greater than 5 is highly correlated. Keeping that in mind Home and Blocks seems to be not correlated (values are very close to 1). Similarly, Assists, Steals and Turnovers are close to 1 but less than 2, so relatively,these can be considered as not correlated. FieldGoals. has the highest value and it can be categorized as moderately correlated than any of the other variables. However, the affect of multicolinearity is not that high, so it is safe to include these variables as predictor variables.
+
+```{r}
+model_1 <- glm(Win ~ Home + TeamPoints + FieldGoals. + 
+               Assists + Steals + Blocks + Turnovers, data = nba_reduced_train, 
+               family=binomial(link=logit))
+
+VIF(model_1)
+```
+
+#### 4. Present the output of the fitted model and interpret the significant coefficients in terms of the odds of your team winning an NBA game.
+
+From the summary of the model we can see that Home, TeamPoints and Steals are statistically significant coefficients in predicting the odds of winning. 
+
+This means that if the game is a Home game (team playing in the hometown) the odds of winning increase by exp(0.789)=????
+
+Similarly, for each TeamPoint scored, the odds of winning increase by 8 percent (exp(0.08044) -1  = 0.083764) 
+Also, for each Steal, the odds of winning increase by 20 percent (exp(0.18793) -1 = 0.206749)
+
+*Note, this model is only representative of one team and doesn't consider how well the opponent is playing.*
+
+```{r}
+summary(model_1)
+```
+
+#### 5. Using 0.5 as your cutoff for predicting wins or losses (1 vs 0) from the predicted probabilities, what is the accuracy of this model? Plot the roc curve for the fitted model. What is the AUC value?
+
+With threshold of 0.5 on Wins or Losses prediction, the AUC Value is 0.833 (see code/graph below).
+
+```{r}
+invisible(pROC::roc(nba_reduced_train$Win, fitted(model_1), plot=T, print.thres= 0.5, 
+                    legacy.axes=T,
+                    print.auc =T,col="red3"))
+```
+
+#### 6. Now add Opp.FieldGoals. as a predictor to the previous model. Is the coefficient significant? If yes, interpret the coefficient in the context of the question.
+
+Yes, Opp.FieldGoals.'s p value is very low, thus the coefficient is statistically significant. This means that every percent increase in FieldGoal. of the opponent, the odds of winning decrease by 42 percent (exp(-0.53) -1 = 0.58 - 1 ).
+
+```{r}
+model_2 <- glm(Win ~ Home + TeamPoints + FieldGoals. + 
+                 + Assists + Steals + Blocks + Turnovers + Opp.FieldGoals., 
+               data = nba_reduced_train, family=binomial(link=logit))
+
+summary(model_2)
+```
+
+
+#### 7. What is the accuracy of this new model? Plot the roc curve for the fitted model. What is the new AUC value? Which model predicts the odds of winning better?
+
+The accuracy went from 0.804 to 0.894, this means that adding the Opp.FieldGoals. (opponents field goals) in the model, increased the model's accuracy by 9%. 
+
+```{r}
+#Confusion Matrix from Model 1
+conf_mat_1 <- confusionMatrix(as.factor(ifelse(fitted(model_1) >= 0.5, "1","0")),
+                            as.factor(nba_reduced_train$Win),positive = "1")
+
+conf_mat_1$overall["Accuracy"]
+
+#Confusion Matrix from Model 2
+conf_mat_2 <- confusionMatrix(as.factor(ifelse(fitted(model_2) >= 0.5, "1","0")),
+                            as.factor(nba_reduced_train$Win),positive = "1")
+
+conf_mat_2$overall["Accuracy"]
+```
+
+
+#### 8. Using the results of the model with the better predictive ability, what suggestions do you have for the coach of your team trying to improve the odds of his team winning a regular season game?
+
+Based upon the results from the model, the Coach should focus more on helping the team to improve defense in the game, as every percent increase in opponents field goal, decreases their odds of winning considerably. 
+
+Also, stealing the ball from opponent also helps in increasing the odds of winning, so the coach should focus on training the team tactics for stealing the balls. 
+
+#### 9. Use this model to predict out-of-sample probabilities for the nba_reduced_test data. Using 0.5 as your cutoff for predicting wins or losses (1 vs 0) from the out-of-sample predicted probabilities, what is the out-of-sample accuracy? How well does your model do in predicting data for the 2017/2018 season?
+
+The accuracy for the test data is 79 precent. For training data the accuracy was 89% so it has decreased by 10% on the test data. Therefore, the predictor is not a very good estimator of predicting out-of-sample probabilities. 
+
+```{r}
+conf_mat_3 <- confusionMatrix(as.factor(ifelse(predict(model_2,nba_reduced_test,
+              type="response") >= 0.5, "1","0")), as.factor(nba_reduced_test$Win), 
+              positive = "1")
+
+conf_mat_3$overall["Accuracy"]
+```
+
+#### 10. Using the change in deviance test, test whether including Opp.Assists and Opp.Blocks in the model at the same time would improve the model. Is there any other variable in this dataset which we did not consider that you think might improve our model? Which one and why?
+
+The p-value from the chi-sqaured test is very high. This implies that including Opp.Assists and Opp.Blocks in the model does not help in improving the prediction from the model. 
+
+```{r}
+model_3 <- glm(Win ~ Home + TeamPoints + FieldGoals. + 
+                 Assists + Steals + Blocks + Turnovers + Opp.FieldGoals. + Opp.Assists 
+               + Opp.Blocks, data = nba_reduced_train, family=binomial(link=logit))
+
+anova(model_2, model_3, test= "Chisq")
+```
+
+Adding TotalFouls seems to be statistically significany and the p-value obtained from chi-squared test by including TotalFouls in one model is statistically significany. Therefore, adding TotalFouls might improve the accuracy in predicting the model. 
+
+```{r}
+model_4 <- glm(Win ~ Home + TeamPoints + FieldGoals. + 
+               Assists + Steals + Blocks + Turnovers + Opp.FieldGoals. + TotalFouls, 
+               data = nba_reduced_train, family=binomial(link=logit))
+
+anova(model_2, model_4, test= "Chisq")
+
+#AIC(model_2)
+#AIC(model_3)
+```
+
+
+## Appendix
+
+#### Appendix Q1
+
+```{r}
+par(mfrow=c(3,2))
+#ggplot(data=nba_reduced_train, aes(x=as.factor(Win), fill=Home, y=WINorLOSS))+ 
+#  xlab('Wining') +  geom_bar(stat="identity")
+
+#Chi-squared test for determinig the relation between binary variables
+chisq.test(table(nba_reduced_train[,c("Win","Home")])) # Home influences Win
+
+ggplot(nba_reduced_train, aes(y=TeamPoints, x=factor(Win), fill=factor(Win)))+
+  geom_boxplot() + xlab('Wining')+ ylab('Team Points')+ ggtitle('Team Points wrt Winning')
+
+ggplot(nba_reduced_train, aes(y=FieldGoals., x=factor(Win), fill=factor(Win)))+
+  geom_boxplot() + xlab('Wining')+ ylab('Field Goals.')+ ggtitle('FieldGoals wrt Winning')
+
+ggplot(nba_reduced_train, aes(y=Assists, x=factor(Win), fill=factor(Win)))+
+  geom_boxplot() + xlab('Wining')+ ylab('Assists')+ ggtitle('Assists wrt Winning')
+
+ggplot(nba_reduced_train, aes(y=Blocks, x=factor(Win), fill=factor(Win)))+
+  geom_boxplot() + xlab('Wining')+ ylab('Blocks')+ ggtitle('Blocks wrt Winning')
+
+ggplot(nba_reduced_train, aes(y=Steals, x=factor(Win), fill=factor(Win)))+
+  geom_boxplot() + xlab('Wining')+ ylab('Steals')+ ggtitle('Steals wrt Winning')
+
+ggplot(nba_reduced_train, aes(y=Turnovers, x=factor(Win), fill=factor(Win)))+
+  geom_boxplot() + xlab('Wining')+ ylab('Turnovers')+ ggtitle('Turnovers wrt Winning')
+```
+
+
+#### Appendix Q2
+```{r echo = T, results = 'hide'}
+cor(nba_reduced_train[8:ncol(nba_reduced_train)])
+```

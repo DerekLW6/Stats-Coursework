@@ -1,0 +1,254 @@
+
+---
+title: "Missing Data Imputation"
+author: "Derek Wales"
+date: "09NOV19"
+output:
+  pdf_document: default
+  html_document:
+    highlight: pygments
+    theme: spacelab
+fig_width: 1.5
+fig_length: 1
+---
+
+```{r setup, include=FALSE}
+# DO NOT ALTER CODE IN THIS CHUNK
+# The very first time you use this R markdown file, you should install each of the packages below.
+# The same goes for other packages you might decide to use
+# Remember that you only need to install each R package once in R (ever -- unless you change computers).
+# All you need to do whenever you need to use the package again (after restarting the R session),
+# is to use the library function to call the package.
+# For example, type install.packages("knitr") in the console to install the knitr package. 
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+library(dplyr)
+library(ggplot2)
+library(knitr)
+library(leaps)
+library(lattice)
+library(lsr)
+library(MASS)
+library(arm)
+library(pROC)
+library(e1071)
+library(caret)
+library(xtable)
+library(mice)
+library(VIM)
+library(ggpubr)
+```
+
+* * *
+
+## Loading the homework files.
+
+```{r include=FALSE}
+setwd('C:\\Users\\derek\\Desktop\\MIDS Program\\.Mids 1st Semester\\.GIT Organization\\Missing_Data_HW')
+tree_df <- read.table('treeage.txt', header = TRUE, sep = ",")
+```
+
+### Part One A: Create a dataset with 30% of the age values missing completely at random, leaving all values of diameter observed. Report the R commands you used to make the dataset. Also report the dataset values after you made the ages missing. (This is so we can tell which cases you made missing.) 
+
+Part One A: Done by taking a sample of 6 and then using match to find the corresponding location. After that, I replaced the appropriate values with NA (in R code below) (Varun Pasad, MIDS 2021).
+
+```{r}
+# EDA Revealed need for a log transform of the Data
+
+#Part One A: Removing 30% of the age values (Varun Pasad, MIDS 2021).
+rand_age <- sample(tree_df$age, 6)
+rand_id <- match(rand_age,tree_df$age)
+
+# Saving the dataframe as a random and 30% of values are replaced 
+tree_df_random <- tree_df
+tree_df_random$age[rand_id] <- NA
+```
+### Part One B: Use a multiple imputation approach to fill in missing ages with the R software mice using a default application, i.e., no transformations in the imputation models. Create m = 50 imputed datasets. Use multiple imputation diagnostics to check the quality of the imputations of age, looking at both the marginal distribution of age and the scatter plot of age versus diameter. Run the diagnostics on at least two of the completed datasets.
+
+This was done using a combination of a stripper, xy and density plots with the imputed datasets. Overlaying those with the observed values reveled that our imputed values were close to the actual values. Especially considering the limited information available. 
+
+### Part One C: Turn in the graphical displays you made (showing results for at least two completed datasets) and your conclusions about the quality of the imputation model. 
+
+After completing three separate linear models with the imputed values, model validation revealed that the first model preformed the best in model validation, even though it suffered from having a small sample size.  
+
+```{r echo=TRUE, include=FALSE}
+# Imputing the random variables using PMM - Predictive mean matching
+tree_df_random_imp <- mice(tree_df_random, m=50,defaultMethod='pmm',print=F) 
+
+# Imputing the random variables using PMM - Predictive mean matching and doing a stripper plot
+tree_df_random_imp <- mice(tree_df_random, m=50, defaultMethod='pmm', print=F) 
+
+# Creating scatterplot and checking diagnostics
+xyplot(tree_df_random_imp, age ~ diameter | .imp,pch=c(1,20),cex = 1.4,col=c("grey","darkred"))
+
+# Stripper Plot
+stripplot(tree_df_random_imp, col=c("grey","darkred"), pch=c(1,20))
+```
+```{r echo=FALSE, include = TRUE, fig.height = 3}
+# Plotting the imputed datasets vs the real
+working_imp0 <- complete(tree_df_random_imp, 5)
+working_imp1 <- complete(tree_df_random_imp, 10)
+working_imp2 <- complete(tree_df_random_imp, 15)
+
+ggplot(tree_df, aes(diameter, age)) +
+       geom_point() + geom_point(data=working_imp0, color='red') + geom_point(data=working_imp1, color='blue') + geom_point(data=working_imp2, color='green') + ggtitle("Scatter Plot (Black = Original)")
+
+ggplot(tree_df, aes(x=age)) +
+       geom_density() + geom_density(data=working_imp0, color='red') +  geom_density(data=working_imp1, color='blue') +  geom_density(data=working_imp2, color='white') +  geom_density(data=working_imp2, color='orange') + ggtitle("Density Plot (Black = Original)")
+```
+
+
+
+
+```{r echo=TRUE, include=FALSE}
+# Building a Model on Imputed Data 
+imputed_model <- lm(log(working_imp0$age) ~  working_imp0$diameter)
+summary(imputed_model)
+
+# Model validation Number One 
+imputed_residuals <- resid(imputed_model)
+plot(tree_df$age,imputed_residuals)
+plot(imputed_model)
+
+```
+
+###	Part One D: Estimate a regression of age on diameter. Apply the multiple imputation combining rules to obtain point and variance estimates for the regression parameters that account for missing data. What can you conclude about the relationship between age and diameter? 
+
+This was done using the 'pool' command in R. Which got a summary of all the imputed values. After which I built a linear determining the relationship between age and diameter. 
+
+This shows that a base tree age "starts" at the intercept listed below and incrementally increases by one year each time the diameter increases by the coefficient below (note specific values left out because they will be aggregated by the pool function and are slightly different each time).
+
+```{r echo=FALSE, include = TRUE}
+q4_imp <- with(data=tree_df_random_imp, lm(age~diameter))
+q4_thing <- pool(q4_imp)
+summary(q4_thing)
+```
+
+### Part Two A: Use a multiple imputation approach to fill in missing values with the R software mice using a default application.
+
+To do this I first had to replace the missing values across the dataframe with N/As (currently labeled with '.').  Additionally, many of variables were numeric values but factor variables (like race). All of which had to be correctly categorized before I could impute the missing values. Once that was complete, I could impute the required 10 datasets and determine the pattern of missing data. 
+
+### Use multiple imputation diagnostics to check the quality of the imputations, looking at both marginal distributions and scatter plots. Run the diagnostics on at least two of the completed datasets. Turn in plots for bmxbmi (BMI measurement) by age and bmxbmi by riagendr (gender).
+
+### What are your conclusions about the quality of the impuation model? 
+
+Looking at the imputed data, some categories are missing a much higher percentage of data than others with bmxthicr missing in almost 30% of the cases, while	indfminc is missing less than 2%. 
+
+These were important factors to keep in mind prior to conducting analysis. 
+
+This is best represented by the density plot. Which would ideally show a perfect match between the imputed values and the observed values. This will result in less predictive accuracy and have higher variance.
+
+```{r include=FALSE}
+# Reading in DF
+nhanes <- read.csv('nhanes.csv')
+
+# Removing wtmec2yr, sdmvstra, and sdmvpsu (Didn't work?)
+nhanes2 = subset(nhanes, select = -c(nhanes$wtmec2yr, nhanes$sdmvstra, nhanes$sdmvpsu))
+
+# All of the missing values are . not N/As (Fixing Here)
+nhanes2$wtmec2yr <- ifelse(nhanes2$wtmec2yr == '.', NA, nhanes2$wtmec2yr)
+nhanes2$age <- ifelse(nhanes2$age == '.', NA, nhanes2$age)
+nhanes2$ridageyr <- ifelse(nhanes2$ridageyr == '.', NA, nhanes2$ridageyr)
+nhanes2$wtmec2yr <- ifelse(nhanes2$wtmec2yr == '.', NA, nhanes2$wtmec2yr)
+nhanes2$riagendr <- ifelse(nhanes2$riagendr == '.', NA, nhanes2$riagendr)
+nhanes2$ridreth2 <- ifelse(nhanes2$ridreth2 == '.', NA, nhanes2$ridreth2)
+nhanes2$dmdeduc <- ifelse(nhanes2$dmdeduc == '.', NA, nhanes2$dmdeduc)
+nhanes2$indfminc <- ifelse(nhanes2$indfminc == '.', NA, nhanes2$indfminc)
+nhanes2$bmxwt <- ifelse(nhanes2$bmxwt == '.', NA, nhanes2$bmxwt)
+nhanes2$bmxbmi <- ifelse(nhanes2$bmxbmi == '.', NA, nhanes2$bmxbmi)
+nhanes2$bmxtri <- ifelse(nhanes2$bmxtri == '.', NA, nhanes2$bmxtri)
+nhanes2$bmxwaist <- ifelse(nhanes2$bmxwaist == '.', NA, nhanes2$bmxwaist)
+nhanes2$bmxthicr <- ifelse(nhanes2$bmxthicr == '.', NA, nhanes2$bmxthicr)
+nhanes2$bmxarml <- ifelse(nhanes2$bmxarml == '.', NA, nhanes2$bmxarml)
+
+### Convert to factor variables ###
+nhanes2$riagendr <- as.factor(nhanes2$riagendr)
+nhanes2$ridreth2 <- as.factor(nhanes2$ridreth2)
+nhanes2$dmdeduc <- as.factor(nhanes2$dmdeduc)
+nhanes2$indfminc <- as.factor(nhanes2$indfminc)
+```
+
+```{r echo=FALSE, include= TRUE, fig.height=4} 
+# Creating 10 Imputed datasets ('polyrec')
+nhanes2_imp <- mice(nhanes2, m=10,defaultMethod= c("norm","logreg","polyreg","polr"),print=F) 
+
+par(mfrow = c(2,2))
+
+#Plot bmxbmi by age and bmxbmi by riagendr
+marginplot(nhanes2[,c("bmxbmi","age")],col=c("lightblue3","darkred"),cex.numbers=1.2,pch=19)
+
+marginplot(nhanes2[,c("bmxbmi","riagendr")],col=c("lightblue3","darkred"),cex.numbers=1.2,pch=19)
+
+# My missing Patters and are not making sense 
+aggr(nhanes2,col=c("lightblue3","darkred"),numbers=TRUE,sortVars=TRUE,labels=names(nhanes2),
+     cex.axis=.7,gap=3,ylab=c("Proportion missing","Missingness pattern"))
+```
+
+```{r echo=FALSE, include=TRUE}
+# Also using a density plot
+densityplot(nhanes2_imp)
+```
+
+### Run a model that predicts BMI from some subset of age, gender, race, education, marital status, and income. Apply the multiple imputation combining rules to obtain point and variance estimates for the regression parameters that account for missing data. Interpret the results of your final model.
+
+Looking at BMI across age, gender, race, education, marital status, and income we 
+we can observe the following trends. Age does increase your BMI (aka the older you 
+get, the more likely you are to gain weight). Additionally, men are on average heavier 
+than females. I also noticed that BMI changes across race with blacks generally having
+lower BMI and Mexicans and Hispanics being heavier. Education and income are also 
+significant in predicting an individual’s BMI. With a lower income and education levels 
+tending to be heavier.
+
+```{r echo= FALSE, include=FALSE}
+bmi_model_imp <- with(data=nhanes2_imp, lm(bmxbmi ~ age + ridageyr + riagendr + ridreth2 + dmdeduc + indfminc +  bmxwt + bmxtri*bmxwaist + bmxthicr*bmxwaist + bmxarml))
+
+bmi_thing <- pool(bmi_model_imp)
+
+summary(bmi_thing)
+```
+
+
+```{r echo=FALSE, include=FALSE}
+#### THIS CODE CHUNK ####
+nhanes_imp_7 <- complete(nhanes2_imp, 7)
+
+full_model <- lm(bmxbmi ~ age + ridageyr + riagendr + ridreth2 + dmdeduc + indfminc + bmxwt 
++ bmxtri*bmxwaist + bmxthicr*bmxwaist + bmxarml, data = nhanes_imp_7)
+
+null_model <- lm(bmxbmi~1, data = nhanes_imp_7)
+
+AIC_forward <- step(null_model, scope = formula(full_model), trace = 0, direction = 'forward')
+
+AIC_forward$call
+summary(AIC_forward)
+```
+
+```{r echo=TRUE, include=FALSE}
+# Building a Model on Imputed Data 
+imputed_model <- lm(bmxbmi ~ bmxthicr + ridageyr + bmxwaist + ridreth2 + bmxarml + dmdeduc + riagendr + age + indfminc + bmxwaist:bmxtri, data = nhanes_imp_7)
+
+# Model validation Number One 
+imputed_residuals <- resid(imputed_model)
+plot(nhanes_imp_7$bmxbmi,imputed_residuals)
+plot(imputed_model)
+```
+
+```{r echo=TRUE, include=FALSE}
+# Imputing the random variables using PMM - Predictive mean matching
+tree_df_random_imp <- mice(tree_df_random, m=50,defaultMethod='pmm',print=F) 
+
+# Imputing the random variables using PMM - Predictive mean matching and doing a stripper plot
+tree_df_random_imp <- mice(tree_df_random, m=50, defaultMethod='pmm', print=F) 
+
+# Creating scatterplot and checking diagnostics
+xyplot(tree_df_random_imp, age ~ diameter | .imp,pch=c(1,20),cex = 1.4,col=c("grey","darkred"))
+
+# Stripper Plot
+stripplot(tree_df_random_imp, col=c("grey","darkred"), pch=c(1,20))
+```
+
+
+* * *
+
+
+

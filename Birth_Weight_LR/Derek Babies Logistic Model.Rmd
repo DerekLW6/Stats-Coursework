@@ -1,0 +1,244 @@
+
+---
+title: "Modeling and Representing Data Logisitic Regession"
+author: "Derek Wales"
+date: "27SEP19"
+output:
+  pdf_document: default
+  html_document:
+    highlight: pygments
+    theme: spacelab
+---
+
+```{r setup, include=FALSE}
+# DO NOT ALTER CODE IN THIS CHUNK
+# The very first time you use this R markdown file, you should install each of the packages below.
+# The same goes for other packages you might decide to use
+# Remember that you only need to install each R package once in R (ever -- unless you change computers).
+# All you need to do whenever you need to use the package again (after restarting the R session),
+# is to use the library function to call the package.
+# For example, type install.packages("knitr") in the console to install the knitr package. 
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+library(leaps)
+library(dplyr)
+library(ggplot2)
+library(lattice)
+library(lsr)
+library(MASS)
+library(arm)
+library(pROC)
+library(e1071)
+library(caret)
+library(xtable)
+```
+
+* * *
+```{r echo=FALSE}
+#Reading Data In/Dropping NAs
+Smoking <- read.csv("smoking.csv", header=T,sep=",")
+
+#Combining Races
+Smoking$race = ifelse(Smoking$mrace <=5, 1, Smoking$mrace)
+Smoking$Edu = ifelse(Smoking$med ==6|Smoking$med==7, 7, Smoking$med)
+
+#Premature Variable (as factor)
+Smoking$premature = ifelse(Smoking$gestation < 270, 1,0)
+Smoking$premature_f = factor(Smoking$premature, levels = c(0,1))
+```
+
+### Summary:
+
+For this Homework we were analyzing a data set that had a myriad of different mothers all of whom had different characteristics and developing a model to answer several research questions. This was accomplished through Exploratory Data Analysis, Critical Thinking, and Logistic Regression. Which ultimately lead to the model and coefficients below.
+
+\[\log(\frac{\pi_i}{1-\pi_i}) = \beta_0 + \beta_1 Black + \beta_2 Asian + \beta_3 MotherWeight +  \beta_3 Smoking\]
+where $y_i|x_i \sim$ Bernouilli($\pi_i$)
+
+Using our final model, we were able to answer these key research questions (code in the appendix). 
+
+Do mothers who smoke tend to have higher chances of pre-term birth than mothers who do not smoke? What is a likely range for the odds ratio of pre-term birth for smokers and non-smokers? 
+
+Yes, based upon our model the confidence interval for mothers who do smoke increase the odds of a premature within a confidence interval (5%/95%) 0.011320313/0.714031603, log scale. 
+
+Is there any evidence that the odds ratio of pre-term birth for smokers and non-smokers differs by mother’s race? If so, characterize those differences. 
+
+Yes, the odds of being premautre go up if you are a smoker, and  for Black and Asian mothers as well (confidence interval in the model section).
+
+Are there other interesting associations with the odds of pre-term birth that are worth mentioning? 
+
+Mothers weight had a larger effect than anticipated.  
+
+
+### Intro:
+
+For this homework students were provided a simplified data from a Yerushalmy Study which collected the details of more than 15,000 births at the Kaiser Foundation Hospital in Oakland, Ca. The first step in analysis was getting a clean form of it into R. I did this using the read.csv function and putting the results into a dataframe (referred to as Smoking). Upon inspection I realized that the races in the dataframe were similar. Therefore, I also grouped the first six categories of the race variable into one because they were all variations of Caucasian, and as well as education categories 6 and 7 (trade school/uncertain if they finished high school) because of their similarities. Additionally, I added a new factor variable to the dataframe, premature_f (Note: Varun Prasad, MIDS 2021 assisted me in getting the premature weights as factors). This variable is valued at 1 or 0 (1 for if the baby is premautre, 0 if not), and treated it as a categorical variable. This made it much easier to see if when are response variable was true. Instead of trying to find a numerical value with a specific cut off that would have been required if I used gestation time.
+
+### Data and Exploratory Data Analysis:
+
+With the new dataframe we could begin exploratory data analysis. This is the process of looking at our data in a series of formats to see which factors will be the most influential when we develop our model. (Note: BirthID and Date were not explored because they have no effect on baby weight).
+
+I also did not put birthweight in the model, because birthweight is a response to various things about the mother through the pregnancy. I focused all of my analysis on traits of the mother that could potentially determine if the baby was premature. 
+
+Since I had a categorical variable as my response variable, I looked a few of the graphs with numerical values first. Starting with the age of the mother (plot in appendix). After that I explored the other numerical variables, like height and mother weight, each with a boxplot. From that analysis it was hard to draw any conclusions on what the relationship may be, none of the plots had a distinct difference that I could see if the baby would be premature or not.
+
+Next, I began to look to at the other categorical variables in the data set, but instead of using graphs, I used a Chi-Squared test to determine if each variable, when compared with my premature as factor variable, was strong enough to reject the null hypothesis (using .05 as a cut off). 
+
+Going through the dataset there was some evidence that Race, Education, Parity and Smoking may affect whether the baby was premature (based upon p value being less than .05 or near it). Additionally, based upon its high p value for income (0.9087) I knew to be skeptical of any final model that included that as a term.
+
+Of note, the p value for smoking was 0.0694, which is close to the threshold of 0.05. So I decided to pay close attention to it when I was building the model, especially since it was a specific research question.
+
+After completing Exploratory Data Analysis, I had an idea of what the terms in my model should look like and what was likely to be in the model I went through the selection process.
+ 
+### Model Selection Process and Assessment:
+
+Moving into model selection, I decided to keep all the variables (except for the birth weight, date and baby ID) and work forward using the Akaike information criterion (abbreviated as AIC) to determine the best model. I chose the AIC over the Bayesian Information Criterion (or BIC) because we had a complete data set and I did not want to penalize the model for including more information that was readily available.
+
+Using R to “work forward,” I continually put each one of the variables and comparing it against the “null model” (a model which states that the coefficients have no effect). From this I was able to find which model gave me the lowest AIC using the “working forward” methodology. (Note Nathan Warren, MIDS 2021 assisted me in using the stepwise function).
+
+I then repeated the same process, except “working backward” using R to iteratively take values away from the model. Once I had a result, I was then able to compare the results between working forward and backward and see which most accurately represented the data. 
+
+From this I was able to see that working forward resulted in the lowest (best) AIC value and that there were only a few statistically significant variables, race (category 7 and 8 Black and Asian respectively) and the pregnant weight of the mother. I also specifically added smoking back into the model because it was one of the main research questions. 
+
+I then when building the Logistic Regression modeled, I used these four factors which I ultimately resulted in the model below. Interestingly, adding smoking back into the model did result in it generating a signification p value (below 0.05). 
+
+### Final Model
+
+\[\log(\frac{\pi_i}{1-\pi_i}) = \beta_0 + \beta_1 Black + \beta_2 Asian - \beta_3 MotherWeight +  \beta_3 Smoking\]
+where $y_i|x_i \sim$ Bernouilli($\pi_i$)
+
+\newpage 
+### Coefficients in table below
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ & Estimate & Std. Error & z value & Pr($>$$|$z$|$) \\ 
+  \hline
+(Intercept) & -0.4634 & 0.6149 & -0.75 & 0.4511 \\ 
+  Black & 0.7576 & 0.2116 & 3.58 & 0.0003 \\ 
+  Asain & 0.8124 & 0.3954 & 2.05 & 0.0399 \\ 
+  Mother Weight & -0.0109 & 0.0047 & -2.31 & 0.0211 \\ 
+  Smoker & 0.3614 & 0.1790 & 2.02 & 0.0435 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+### Conclusion/Remarks:
+
+The final model had the terms Black, Asian, Smoking (all factor variables), and Mother Weight (a numerical variable) as coefficients. The exponentiated values for the factor variables were Black - 0.5738, Asian - 0.6599, and Smoking - 0.1306. This means that with everything else being held constant, if a mother is Black it increases the odds that the baby will be born premature by 0.5738. Additionally, the weight of the mother was also a significant factor in determining if the baby would be premature, with the log odds being -0.0109, with the exponentiated value being 0.0001, this means as the mother gets heavier the odds drop of the baby being premature.  
+
+From here we had our final model the next step was to do Model Assessment. The primary way of doing this was by plotting the residuals against the fitted values. With the goal of seeing if anything fell outside of the confidence interval, depicted by the red lines in the graph in the appendix. From this we can infer how effectively our model is selecting against the actual data by seeing if many of our model points fall outside of the confidence interval.
+
+Additionally I had to validate the sensitivitiy (or the true positive rate), the specificity (the true negative rate), and accuracy (how often the model predicts correctly). These values were 0.5731, 0.6226, and 0.6133 respectively. This means that holistically the model is prone to errors when predicting whether or not a mother will have a baby prematurely. 
+
+The next step was to plot the residuals with sensitivity and specificity, also known as the Area Under the Curve (or AOC Graph). A perfect fit for a model would have the AOC = 1 and know effect would be 0.5 (the same results as a coin toss). Based upon this our model with an AOC 0.618 was not a particularly strong fit. 
+
+Although our model does help predict whether a baby will be premature, it is hard to make lifestyle inferences from the data. Specifically, if the mother is heavier, it is less likely that the baby will be premature. However, weight in and of itself is not necessarily the best measure because sometimes people can gain weight and not necessarily become healthier. We also may not have a large enough sample size for some of the minority races.
+
+This means that according to our model, the odds of a baby being premature are 0.6291 if the mother is Black or Asian, the chances increase by 0.5738/0.6599 respectively, and 0.1306 if the mother is a smoker. Those odds decrease as the mother gets heavier.
+
+\newpage
+
+## Appendix (Note: EDA at the end for readability)
+
+```{r}
+# Model Selection Code
+full_model <- glm(premature_f ~ as.factor(smoke) + as.factor(race) + parity  
+                  + as.factor(Edu) + as.factor(inc) + mht + mpregwt, 
+                  family = binomial, Smoking)
+
+null_model <- glm(premature_f~1 ,family = binomial, Smoking) 
+
+BIC_forward <- step(full_model, trace = 0, direction = "both")
+#AIC_forward$call
+summary(BIC_forward)
+BIC(BIC_forward)
+
+AIC_backward <- step(null_model, scope = formula(full_model), trace = 0, direction = 'backward')
+AIC_backward$call
+summary(AIC_backward)
+
+#Building the final model because it was part of the question
+final_model_premature <- glm(premature_f ~ as.factor(race) + mpregwt +as.factor(smoke), 
+                             family = binomial, Smoking)
+summary(final_model_premature)
+exp(confint(final_model_premature, level = 0.95))
+
+
+# Model Validation Code 
+# Testing to see if we have any residuals
+rawresid1 <- residuals(final_model_premature,"resp")
+
+#binned residual plot
+binnedplot(x=fitted(final_model_premature),y=rawresid1,xlab="Pred. probabilities",
+           col.int="red4",ylab="Avg. residuals",main="Binned residual plot",col.pts="navy")
+
+#binned residual plot
+binnedplot(x=fitted(final_model_premature),y=rawresid1,xlab="Pred. probabilities",
+           col.int="red4",ylab="Avg. residuals",main="Binned residual plot",col.pts="navy")
+
+#Accuracy/Sensitivity/Specificity
+Conf_mat <- confusionMatrix(as.factor(ifelse(fitted(final_model_premature) >= mean(Smoking$premature), "1","0")),
+                            as.factor(Smoking$premature_f),positive = "1")
+Conf_mat$table
+Conf_mat$overall["Accuracy"];
+Conf_mat$byClass[c("Sensitivity","Specificity")]
+
+# Area Under the Curve
+roc(Smoking$premature_f,fitted(final_model_premature),plot=T,print.thres=Smoking$premature,
+    legacy.axes=T, print.auc = T, print.auc.y = .4, col="red3")
+
+#Abhishek Baral, MIDS 2021 Assisted me with adjusting the mean for the AUC curve. 
+
+# EDA Tables and Plots
+#Age
+ggplot(Smoking, aes(x=premature_f, y=mage))+
+  geom_boxplot() + 
+  ylab('Age') +
+  xlab('Premature') + ggtitle("Boxplot of Gestation: Age")
+
+#Mother Weight
+ggplot(Smoking, aes(x=premature_f, y=mpregwt))+
+  geom_boxplot() + 
+  ylab('Mother Weight') +
+  xlab('Premature') + ggtitle("Boxplot of Gestation: Weight")
+
+#Mother Height
+ggplot(Smoking, aes(x=premature_f, y=mht))+
+  geom_boxplot() + 
+  ylab('Height') +
+  xlab('Premature') + ggtitle("Boxplot of Gestation: Height")
+
+#Lets do some more EDA!!!!
+#Race vs Gestation (All whites are 1)
+bwplot(gestation ~ as.factor(smoke)|as.factor(race), data = Smoking, ylab = 'Gestation Time')
+
+#Smoking
+chisq.test(table(Smoking[,c("smoke","premature_f")]))
+# P-value = .0694
+
+#Race 
+chisq.test(table(Smoking[,c("race","premature_f")]))
+# P-value = .003561
+
+#Education
+chisq.test(table(Smoking[,c("Edu","premature_f")]))
+# P-value = 0.0005476
+
+#Income
+chisq.test(table(Smoking[,c("inc","premature_f")]))
+# P-value = 0.9087
+
+#Pairity
+chisq.test(table(Smoking[,c("parity","premature_f")]))
+# P-value = 0.01125
+
+```
+
+
+
+* * *
+
+
+

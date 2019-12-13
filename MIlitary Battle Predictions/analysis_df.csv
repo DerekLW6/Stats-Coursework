@@ -1,0 +1,318 @@
+﻿ISEQNO,Win,WAR,NAME,Location,Attacker,Defender,Defense,Terrain,Weather,Surprise,Air.Power,Personnel_R,Tanks_R,Artillery_R,Leadership,Training,Morale,Logistics,Momentum,Intelligence,Initiative,Attack_Scheme,Attack_Y,Attack_M
+310,1,WORLD WAR I,1916 BRUSILOV OFFENSIVE,Europe,Russian Army,Austrian Army,Prepared Defense,Rolling_Mixed,Dry_Sunny_Temperate,2,0,1.2,0.05,1.049837486,0,0,0,1,0,0,1,frontal_attack,1916,6
+313,1,WORLD WAR I,TRENTINO COUNTER-OFFENSIVE,Europe,Italian Army,Austrian Army,Hasty Defense,Rugged_Bare,Dry_Sunny_Temperate,0,0,1.162790698,0.05,0.3115,0,0,0,1,0,0,0,frontal_attack,1916,6
+287,1,WORLD WAR I,THE KOLUBRA,Europe,Russian Army,Austrian Army,Prepared Defense,Rugged_Mixed,Wet_H_Rain_Temperate,2,0,1,0.05,1,1,0,0,1,0,0,1,frontal_attack,1914,12
+295,-1,WORLD WAR I,FIRST ISONZO,Europe,Italian Army,Austrian Army,Fortified Defense,Rugged_Mixed,Dry_Sunny_Temperate,0,0,1,0.352941176,0,0,0,0,0,0,0,1,frontal_attack,1915,6
+296,-1,WORLD WAR I,SECOND ISONZO,Europe,Italian Army,Austrian Army,Fortified Defense,Rugged_Mixed,Dry_Sunny_Temperate,0,0,1,0.403669725,1,0,0,0,0,0,0,0,frontal_attack,1915,7
+297,-1,WORLD WAR I,THIRD ISONZO,Europe,Italian Army,Austrian Army,Fortified Defense,Rugged_Mixed,Dry_Sunny_Cold,0,0,1,0.035714286,0,0,0,0,0,0,0,0,frontal_attack,1915,10
+298,-1,WORLD WAR I,FOURTH ISONZO,Europe,Italian Army,Austrian Army,Fortified Defense,Rugged_Mixed,Dry_Sunny_Cold,0,0,1,0.1,0,0,0,0,0,0,0,0,frontal_attack,1915,11
+311,-1,WORLD WAR I,FIFTH ISONZO,Europe,Italian Army,Austrian Army,Fortified Defense,Rugged_Mixed,Wet_H_Rain_Cold,0,0,1,0.035714286,1,0,0,0,0,0,0,0,frontal_attack,1916,3
+314,1,WORLD WAR I,SIXTH ISONZO (GORIZIA),Europe,Italian Army,Austrian Army,Fortified Defense,Rugged_Mixed,Dry_Sunny_Temperate,1,0,1.833333333,0.035714286,4.666666667,0,0,0,1,0,0,1,frontal_attack,1916,8
+321,1,WORLD WAR I,TENTH ISONZO,Europe,Italian Army,Austrian Army,Fortified Defense,Rugged_Bare,Dry_Sunny_Temperate,0,0,1.696969697,0.1,1.571428571,0,0,0,0,0,0,1,frontal_attack,1917,5
+322,1,WORLD WAR I,ELEVENTH ISONZO,Europe,Italian Army,Austrian Army,Fortified Defense,Rugged_Bare,Dry_Sunny_Temperate,0,0,2.055555556,0.352941176,0,0,0,0,0,0,0,0,frontal_attack,1917,8
+486,1,WORLD WAR II,JITRA,Pacific,Japanese Army,British Army,Hasty Defense,Rolling_Wooded,Wet_H_Rain_Hot,1,1,0.583333333,2.5,0.928571429,1,2,1,0,1,0,1,frontal_attack,1941,12
+331,1,WORLD WAR I,LYS,Europe,German Army,British Army,Fortified Defense,Flat_Mixed,Wet_H_Rain_Temperate,1,-1,1,0.05,1,0,0,0,-1,1,0,1,frontal_attack,1918,4
+423,-1,WORLD WAR II,THE FACTORY,Europe,German Army,British Army,Hasty Defense,Flat_Mixed,Dry_Sunny_Cold,0,-1,0.852080552,1.295774648,0.537190083,0,0,0,0,0,0,1,frontal_attack,1944,1
+426,-1,WORLD WAR II,CARROCETO,Europe,German Army,British Army,Prepared Defense,Flat_Mixed,Dry_Sunny_Cold,0,-1,5.867109635,0.769784173,2.695121951,0,1,0,0,0,0,1,frontal_attack,1944,2
+428,1,WORLD WAR II,APRILIA II,Europe,German Army,British Army,Prepared Defense,Flat_Mixed,Dry_Sunny_Cold,0,-1,1.552058658,1.13,0.986725664,0,0,0,0,0,0,1,frontal_attack,1944,2
+425,1,WORLD WAR II,CAMPOLEONE COUNTERATTACK,Europe,German Army,British Army,Prepared Defense,Flat_Mixed,Dry_Sunny_Temperate,0,-1,2.646837503,3.057142857,1.819672131,0,1,0,0,0,0,1,unknown,1944,2
+329,1,WORLD WAR I,SECOND SOMME-PHASE I (SOMME-PERONNE),Europe,German Army,British Army,Fortified Defense,Rolling_Mixed,Wet_H_Rain_Temperate,2,-1,2,0.035714286,2.5892,0,0,0,-1,0,0,1,frontal_attack,1918,3
+330,0,WORLD WAR I,SECOND SOMME-PHASE II (SOMME-MONTDIDIER),Europe,German Army,British Army,Fortified Defense,Rolling_Mixed,Wet_H_Rain_Temperate,0,-1,1.166666667,0.1,1.6,0,0,0,-1,1,0,1,frontal_attack,1918,3
+290,-1,WORLD WAR I,YPRES II,Europe,German Army,British Army,Fortified Defense,Flat_Mixed,Dry_Sunny_Temperate,2,0,1,0.035714286,1,0,0,0,0,0,0,0,frontal_attack,1915,4
+320,1,WORLD WAR I,CAMBRAI II,Europe,German Army,British Army,Prepared Defense,Rolling_Mixed,Dry_Sunny_Temperate,1,0,1.444444444,0.352941176,1.2,0,0,0,0,0,0,1,frontal_attack,1917,11
+397,-1,WORLD WAR II,VIETRI,Europe,German Army,British Army,Hasty Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,-1,1.161260355,3.6,1.123287671,0,1,0,0,0,0,0,frontal_attack,1943,9
+401,-1,WORLD WAR II,VIETRI II,Europe,German Army,British Army,Prepared Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,-1,0.703257191,1.125,1.078947368,0,1,0,0,0,0,0,frontal_attack,1943,9
+396,-1,WORLD WAR II,BATTIPAGLIA I,Europe,German Army,British Army,Hasty Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,-1,1.311665183,2.966666667,0.739726027,0,1,0,0,0,0,0,frontal_attack,1943,9
+431,1,WORLD WAR II,MOLETTA RIVER II,Europe,German Army,British Army,Fortified Defense,Flat_Mixed,Dry_Sunny_Cold,2,-1,2.200389304,0.406779661,0.902702703,0,1,0,0,1,0,1,river_crossing,1944,2
+417,1,WORLD WAR II,MONTE CAMINO II,Europe,German Army,British Army,Hasty Defense,Rugged_Mixed,Wet_L_Rain_Temperate,0,-1,1.527307692,2.361842105,0.366071429,0,1,0,0,0,0,1,frontal_attack,1943,11
+385,-1,WORLD WAR II,ALAM HALFA,North Africa,German Army,British Army,Prepared Defense,Flat_Desert,Dry_Sunny_Temperate,0,-1,1.033333333,1.144444444,0.96875,0,0,0,-1,0,0,1,single_envelopment,1942,8
+265,1,WORLD WAR I,MONS,Europe,German Army,British Army,Hasty Defense,Flat_Mixed,Dry_Sunny_Temperate,0,0,1,0.403669725,1.829268293,0,0,0,0,0,0,0,frontal_attack,1914,8
+266,1,WORLD WAR I,LE CATEAU,Europe,German Army,British Army,Hasty Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,0,1,0.1,0,0,0,0,0,1,0,0,frontal_attack,1914,8
+268,-1,WORLD WAR I,HEIGHTS OF NANCY,Europe,German Army,French Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,0,1,0.1,1,0,0,0,0,0,0,0,frontal_attack,1914,9
+262,1,WORLD WAR I,ALSACE-LORRAINE II,Europe,German Army,French Army,Hasty Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,0,1,0.1,1,0,0,0,0,0,0,0,frontal_attack,1914,8
+485,1,WORLD WAR II,SEDAN-MEUSE RIVER,Europe,German Army,French Army,Prepared Defense,Rolling_Mixed,Dry_Sunny_Temperate,2,1,0.8,3,1.052083333,1,1,1,0,1,0,1,river_crossing,1940,5
+349,-1,WORLD WAR I,NOYON-MONTDIDIER,Europe,German Army,French Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,-1,1,0.352941176,1,0,0,0,0,1,0,1,frontal_attack,1918,6
+275,-1,WORLD WAR I,GAP OF REVIGNY,Europe,German Army,French Army,Hasty Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,0,1,0.05,1,0,0,0,0,0,0,-1,frontal_attack,1914,9
+274,-1,WORLD WAR I,VITRY LE FRANCOIS,Europe,German Army,French Army,Hasty Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,0,1,0.035714286,1,0,0,0,0,0,0,0,frontal_attack,1914,9
+264,1,WORLD WAR I,THE SAMBRE,Europe,German Army,French Army,Hasty Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,0,1,0.05,1,0,0,0,0,0,0,0,frontal_attack,1914,8
+267,0,WORLD WAR I,GUISE,Europe,German Army,French Army,Hasty Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,0,1,0.1,1,0,0,0,0,1,-1,0,frontal_attack,1914,8
+333,-1,WORLD WAR I,CHEMIN-DES-DAMES,Europe,German Army,French Army,Fortified Defense,Rugged_Mixed,Dry_Sunny_Temperate,2,-1,3.333333333,1,0,-1,0,0,0,0,-1,1,frontal_attack,1918,5
+350,-1,WORLD WAR I,CHAMPAGNE-MARNE,Europe,German Army,French Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,1,0.05,1,0,0,0,0,1,0,1,double_envelopment,1918,7
+273,-1,WORLD WAR I,MARSHES OF ST.GOND,Europe,German Army,French Army,Hasty Defense,Flat_Mixed,Dry_Sunny_Temperate,0,0,1,0.352941176,1,-1,0,0,0,0,0,0,frontal_attack,1914,9
+656,1,WORLD WAR II,ARDENNES,Europe,German Army,French Army,Unknown,Rolling_Mixed,Wet_L_Rain_Temperate,3,1,1,1.129166667,1,0,1,2,0,1,0,2,river_crossing,1940,5
+657,1,WORLD WAR II,CAMBRAI,Europe,German Army,French Army,Unknown,Rolling_Mixed,Wet_L_Rain_Temperate,1,1,1,0.915966387,1,0,1,2,0,1,0,2,frontal_attack,1940,5
+387,1,WORLD WAR II,OPERATION LIGHTFOOT,North Africa,British Army,German Army,Fortified Defense,Flat_Desert,Dry_Sunny_Temperate,2,1,2.095321365,1.748735245,1.533783784,0,0,0,1,0,1,1,frontal_attack,1942,10
+388,1,WORLD WAR II,ALAMEIN BRIDGEHEAD EXPANSION,North Africa,British Army,German Army,Fortified Defense,Flat_Desert,Dry_Sunny_Temperate,0,1,2.111102356,1.585106383,0,0,0,0,1,0,0,1,frontal_attack,1942,10
+389,1,WORLD WAR II,OPERATION SUPERCHARGE,North Africa,British Army,German Army,Fortified Defense,Flat_Desert,Dry_Sunny_Temperate,0,1,2.175257732,2.258064516,0,0,0,0,1,1,0,1,frontal_attack,1942,11
+386,1,WORLD WAR II,EL ALAMEIN II,North Africa,British Army,German Army,Fortified Defense,Flat_Desert,Dry_Sunny_Temperate,2,1,2.095321365,1.748735245,1.533783784,0,0,0,1,0,1,1,frontal_attack,1942,10
+509,1,WORLD WAR II,YASSY-KISHINEV OPERATION,USSR,Soviet Union,German Army,Prepared Defense,Flat_Mixed,Dry_Sunny_Temperate,1,1,1.5625,3.57,1.967857143,2,2,2,2,1,2,2,double_envelopment,1944,8
+375,1,WORLD WAR I,LA NEUVILLE LE COMTE FERME,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Overcast_Temperate,0,1,2.765463918,1,1.8,0,-1,2,0,0,0,1,frontal_attack,1918,10
+367,1,WORLD WAR I,MEDEAH FARM,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,12.39354839,1,0.24,0,-1,1,0,0,0,1,frontal_attack,1918,10
+344,-1,WORLD WAR I,NORTH WOOD III,Europe,US Military,German Army,Fortified Defense,Rugged_Wooded,Dry_Overcast_Temperate,0,-1,0.802555911,1,0,0,-1,1,0,0,0,1,frontal_attack,1918,6
+345,1,WORLD WAR I,NORTH WOOD IV (FINAL ASSAULT),Europe,US Military,German Army,Fortified Defense,Rugged_Wooded,Dry_Sunny_Temperate,0,-1,1,1,2.4,0,-1,1,0,0,0,1,frontal_attack,1918,6
+347,1,WORLD WAR I,LA ROCHE WOOD EAST,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,0.871285218,1,0.75,0,-1,1,0,0,0,1,frontal_attack,1918,7
+337,-1,WORLD WAR I,WEST WOOD I,Europe,US Military,German Army,Prepared Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,0,1.559322034,0.352941176,1.8,-1,-1,1,0,0,0,0,frontal_attack,1918,6
+340,1,WORLD WAR I,WEST WOOD II,Europe,US Military,German Army,Prepared Defense,Rugged_Wooded,Wet_L_Rain_Temperate,0,0,1.859288098,0.05,1.714285714,-1,-1,1,0,0,0,1,frontal_attack,1918,6
+339,-1,WORLD WAR I,HILL 192,Europe,US Military,German Army,Prepared Defense,Rolling_Mixed,Dry_Overcast_Temperate,0,0,0.912262958,0.035714286,1.8,-1,-1,1,0,0,0,-1,frontal_attack,1918,6
+359,1,WORLD WAR I,BERZY LE SEC,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Wet_L_Rain_Temperate,0,1,11.42857143,1,3.272727273,0,0,2,0,1,0,1,frontal_attack,1918,7
+309,-1,WORLD WAR I,LAKE NAROTCH,USSR,Russian Army,German Army,Prepared Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,0,1,0.035714286,2.015909091,0,0,0,0,0,0,0,frontal_attack,1916,3
+473,1,WORLD WAR II,BOURGALTROFF,Europe,US Military,German Army,Prepared Defense,Rolling_Mixed,Wet_L_Rain_Cold,0,1,1.587360025,7.1875,1.950617284,0,0,0,0,1,0,1,frontal_attack,1944,11
+471,1,WORLD WAR II,MORHANGE,Europe,US Military,German Army,Prepared Defense,Rolling_Mixed,Wet_L_Rain_Cold,0,1,3.425678359,12.625,1.339622642,0,0,0,1,0,0,1,frontal_attack,1944,11
+456,1,WORLD WAR II,IL GIOGIO PASS,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,4.248918919,4.952380952,5,0,0,0,0,0,0,0,frontal_attack,1944,9
+366,1,WORLD WAR I,BLANC MONT I,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,1,1,0.95049505,0,-1,1,0,0,0,1,frontal_attack,1918,10
+352,1,WORLD WAR I,MISSY AUX BOIS RAVINE,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Overcast_Temperate,2,1,1.660803186,1,1.074074074,0,0,1,0,0,0,1,frontal_attack,1918,7
+478,0,WORLD WAR II,DURSTEL-FAERBERSVILLER,Europe,US Military,German Army,Prepared Defense,Rolling_Mixed,Wet_L_Rain_Cold,0,1,2.932990362,8.32,1.190789474,0,0,0,0,0,0,1,frontal_attack,1944,11
+470,1,WORLD WAR II,FORET DE CHATEAU-SALINS,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Wet_H_Rain_Cold,0,1,3.896915512,16.3,1.572368421,0,0,0,1,1,0,0,frontal_attack,1944,11
+472,1,WORLD WAR II,MORHANGE-FAULQUEMONT,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Wet_L_Rain_Cold,0,1,3.25533789,8.317460317,3.047337278,0,0,0,1,1,0,1,frontal_attack,1944,11
+474,1,WORLD WAR II,SARRE-ST. AVOLD,Europe,US Military,German Army,Prepared Defense,Rolling_Mixed,Dry_Overcast_Cold,0,1,2.745431535,9.727272727,2.507246377,0,0,0,0,1,0,1,frontal_attack,1944,11
+480,1,WORLD WAR II,SARRE-SINGLING,Europe,US Military,German Army,Delay,Rolling_Mixed,Dry_Overcast_Temperate,0,1,2.856322022,14.85714286,2.92746114,0,0,0,0,1,0,1,frontal_attack,1944,12
+379,1,WORLD WAR I,HILL 272,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Overcast_Temperate,0,1,1.150994928,1,1.032258065,0,-1,2,0,0,0,1,frontal_attack,1918,10
+382,1,WORLD WAR I,HILL 252-PONT MAUGIS,Europe,US Military,German Army,Prepared Defense,Rolling_Mixed,Wet_L_Rain_Temperate,0,1,1.201812689,0.352941176,0,0,-1,2,0,1,0,1,frontal_attack,1918,11
+378,1,WORLD WAR I,BOIS DE BOYON-MONTREFAGNE,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Overcast_Temperate,0,1,1.633504274,1,1.454545455,0,-1,2,0,0,0,1,frontal_attack,1918,10
+409,1,WORLD WAR II,CANAL I,Europe,British Army,German Army,Prepared Defense,Flat_Mixed,Wet_L_Rain_Temperate,0,1,1.794052593,3.95,1.511111111,0,0,0,0,0,0,1,river_crossing,1943,10
+402,1,WORLD WAR II,GRAZZANISE,Europe,British Army,German Army,Prepared Defense,Flat_Mixed,Dry_Sunny_Temperate,0,1,1.804288547,4.051282051,1.511111111,0,0,0,0,0,0,1,river_crossing,1943,10
+419,-1,WORLD WAR II,CALABRITTO,Europe,British Army,German Army,Fortified Defense,Rugged_Mixed,Wet_L_Rain_Temperate,0,1,2.341196626,4.25,3.513513514,0,-1,0,0,0,0,0,frontal_attack,1943,12
+405,1,WORLD WAR II,CASTEL VOLTURNO,Europe,British Army,German Army,Prepared Defense,Flat_Mixed,Dry_Sunny_Temperate,0,1,2.177617063,1.307692308,4.422222222,0,0,0,0,0,0,1,river_crossing,1943,10
+411,1,WORLD WAR II,CANAL II,Europe,British Army,German Army,Prepared Defense,Rolling_Mixed,Wet_L_Rain_Temperate,0,1,2.153051181,1.307692308,3.733333333,0,-1,0,0,0,0,0,river_crossing,1943,10
+414,-1,WORLD WAR II,MONTE CAMINO I,Europe,British Army,German Army,Fortified Defense,Rugged_Mixed,Wet_L_Rain_Temperate,0,1,2.890814815,1.184210526,3.902439024,0,-1,0,0,0,0,0,frontal_attack,1943,11
+412,-1,WORLD WAR II,FRANCOLISE,Europe,British Army,German Army,Prepared Defense,Flat_Mixed,Wet_L_Rain_Temperate,0,1,1.730959446,4.051282051,1.511111111,0,-1,0,0,0,0,0,frontal_attack,1943,10
+420,1,WORLD WAR II,MONTE CAMINO III,Europe,British Army,German Army,Fortified Defense,Rugged_Mixed,Wet_L_Rain_Temperate,0,1,6.309002433,1.651315789,4.117647059,0,-1,0,0,0,0,0,frontal_attack,1943,12
+421,1,WORLD WAR II,MONTE MAGGIORE,Europe,US Military,German Army,Fortified Defense,Rugged_Mixed,Wet_H_Rain_Temperate,0,1,1.688260341,4.952380952,4.470588235,0,-1,0,0,0,0,0,frontal_attack,1943,12
+498,1,WORLD WAR II,BELGOROD,USSR,Soviet Union,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,0,4.666666667,5.82,1.9,0,-1,1,1,1,1,1,frontal_attack,1943,8
+394,1,WORLD WAR II,PORT OF SALERNO,Europe,British Army,German Army,Hasty Defense,Rolling_Mixed,Dry_Sunny_Temperate,1,1,3.039294118,1.470588235,3,0,-1,0,0,0,0,1,frontal_attack,1943,9
+393,1,WORLD WAR II,AMPHITHEATER,Europe,British Army,German Army,Hasty Defense,Rolling_Mixed,Dry_Sunny_Temperate,1,1,3.039294118,1.543478261,2.464285714,0,-1,0,0,0,0,1,frontal_attack,1943,9
+395,-1,WORLD WAR II,SELE-CALORE CORRIDOR,Europe,US Military,German Army,Hasty Defense,Rolling_Mixed,Dry_Sunny_Temperate,1,1,1.483551847,1.358974359,0.911111111,0,-1,0,0,0,0,1,frontal_attack,1943,9
+377,1,WORLD WAR I,HILL 212,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Overcast_Temperate,0,1,1.505847076,1,0.888888889,0,-1,2,0,0,0,1,frontal_attack,1918,10
+508,-1,WORLD WAR II,"VISTULA RIVER, PULAWY, PHASE II",Europe,Soviet Union,German Army,Prepared Defense,Flat_Mixed,Dry_Sunny_Temperate,0,1,2.7421875,1.416666667,1.974358974,0,0,1,0,1,0,1,frontal_attack,1944,8
+507,1,WORLD WAR II,"VISTULA RIVER, CROSSING, PHASE I",Europe,Soviet Union,German Army,Prepared Defense,Flat_Mixed,Dry_Sunny_Temperate,0,1,2.490196078,1,2.628205128,0,0,1,0,1,0,1,river_crossing,1944,7
+502,1,WORLD WAR II,SEVASTOPOL,USSR,Soviet Union,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,5.522319444,9.8,3.704761905,2,2,2,2,1,2,2,frontal_attack,1944,5
+305,-1,WORLD WAR I,SOMME-OVILLERS,Europe,British Army,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,4.035714286,0.05,1,0,0,0,0,1,0,0,frontal_attack,1916,7
+491,1,WORLD WAR II,LENINGRAD (OPERATION SPARK),USSR,Soviet Union,German Army,Fortified Defense,Flat_Mixed,Wet_L_Rain_Cold,0,0,4,15.8,6.445054945,1,1,2,1,0,0,2,frontal_attack,1943,1
+316,-1,WORLD WAR I,AISNE II,Europe,French Army,German Army,Fortified Defense,Rolling_Mixed,Wet_H_Rain_Temperate,0,0,1,0.05,1.903846154,0,0,0,0,0,0,0,frontal_attack,1917,4
+307,1,WORLD WAR I,SOMME-FLERS-COURCELETTE,Europe,British Army,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,3,1,2.111111111,0.05,8.961538462,0,0,0,0,1,0,1,frontal_attack,1916,9
+272,1,WORLD WAR I,TWO MORINS,Europe,British Army,German Army,Delay,Rolling_Mixed,Dry_Sunny_Temperate,0,0,1,0.035714286,0.529411765,0,0,0,0,0,0,0,frontal_attack,1914,9
+463,1,WORLD WAR II,SEINE RIVER,Europe,US Military,German Army,Prepared Defense,Rolling_Mixed,Wet_L_Rain_Temperate,0,1,2.707933333,12.42105263,3.7,0,0,1,1,1,0,1,river_crossing,1944,8
+464,0,WORLD WAR II,MOSELLE-METZ,Europe,US Military,German Army,Delay,Rolling_Mixed,Wet_L_Rain_Temperate,0,1,1.436891566,3.65625,2.096774194,0,0,0,0,0,0,0,river_crossing,1944,9
+465,-1,WORLD WAR II,METZ,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Wet_L_Rain_Temperate,0,1,1.535977767,5.363636364,1.193548387,0,0,0,0,0,0,0,unknown,1944,9
+461,0,WORLD WAR II,CHARTRES,Europe,US Military,German Army,Hasty Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,1.879399399,21.13333333,1.921052632,0,0,1,1,1,0,1,double_envelopment,1944,8
+270,0,WORLD WAR I,OURCQ II,Europe,French Army,German Army,Hasty Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,0,1,0.035714286,1,0,0,0,0,0,0,0,frontal_attack,1914,9
+277,-1,WORLD WAR I,STALLUPONEN,Europe,Russian Army,German Army,Hasty Defense,Flat_Mixed,Dry_Sunny_Temperate,-1,0,6.4008,0.1,1.2,-1,-1,0,0,0,-1,-1,frontal_attack,1914,8
+500,1,WORLD WAR II,KORSUN-SCHEVCHENKOVSKIY,USSR,Soviet Union,German Army,Prepared Defense,Flat_Mixed,Wet_H_Rain_Cold,0,0,3.017159763,1.969432314,3.200483092,0,0,1,1,1,1,0,double_envelopment,1944,1
+276,-1,WORLD WAR I,THE AISNE,Europe,French Army,German Army,Hasty Defense,Rolling_Mixed,Wet_L_Rain_Temperate,0,0,1,0.352941176,1,0,0,0,0,1,-1,0,frontal_attack,1914,9
+604,-1,WORLD WAR II,RAPIDO NORTH I,Europe,US Military,German Army,Fortified Defense,Flat_Bare,Wet_L_Rain_Cold,0,1,3.636363636,3.571428571,2.5,-1,0,0,1,0,-1,-1,frontal_attack,1944,1
+605,-1,WORLD WAR II,RAPIDO NORTH II,Europe,US Military,German Army,Fortified Defense,Flat_Bare,Wet_L_Rain_Cold,0,1,3.454545455,3.571428571,2.5,-1,0,0,0,0,-1,-1,frontal_attack,1944,1
+357,1,WORLD WAR I,CHAUDUN,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Overcast_Temperate,1,1,2.01375,1,0.583333333,0,-1,1,0,0,0,1,frontal_attack,1918,7
+341,1,WORLD WAR I,NORTH WOOD I (HUNTING LODGE),Europe,US Military,German Army,Prepared Defense,Rugged_Wooded,Dry_Overcast_Temperate,0,0,0.894979508,0.403669725,0.9,-1,-1,1,0,0,0,1,frontal_attack,1918,6
+369,1,WORLD WAR I,BLANC MONT RIDGE,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,2,1,3.056768559,1,4.8,0,-1,1,0,0,0,1,frontal_attack,1918,10
+370,1,WORLD WAR I,SOMMEPY WOOD,Europe,US Military,German Army,Fortified Defense,Rolling_Wooded,Dry_Sunny_Temperate,2,1,13.7761194,1,3.428571429,0,-1,1,0,0,0,1,frontal_attack,1918,10
+336,1,WORLD WAR I,HILL 142,Europe,US Military,German Army,Prepared Defense,Rolling_Mixed,Dry_Overcast_Temperate,0,0,1,0.403669725,1.333333333,0,-1,1,0,0,0,1,frontal_attack,1918,6
+354,1,WORLD WAR I,ST. AMAND FARM,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Overcast_Temperate,2,1,2.875,1,0,0,0,1,0,0,0,1,frontal_attack,1918,7
+348,1,WORLD WAR I,LA ROCHE WOOD WEST,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,0.87077458,1,1.277777778,0,-1,1,0,0,0,1,frontal_attack,1918,7
+338,0,WORLD WAR I,BOURESCHES I,Europe,US Military,German Army,Prepared Defense,Rugged_Wooded,Dry_Sunny_Temperate,0,0,2.021449704,0.403669725,1.285714286,-1,-1,1,0,0,0,0,frontal_attack,1918,6
+360,1,WORLD WAR I,BUZANCY RIDGE,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Wet_L_Rain_Temperate,0,1,9.566787004,1,6,0,0,2,0,1,0,1,frontal_attack,1918,7
+346,1,WORLD WAR I,VAUX,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,1.325443478,1,0.958333333,0,-1,1,0,0,0,1,frontal_attack,1918,7
+371,0,WORLD WAR I,BLANC MONT II,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,1.8,1,0.813559322,0,-1,1,0,0,0,1,frontal_attack,1918,10
+353,1,WORLD WAR I,BREUIL,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Overcast_Temperate,2,1,1.892226812,1,0.604166667,0,0,1,0,0,0,1,frontal_attack,1918,7
+481,0,WORLD WAR II,SINGLING-BINING,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Wet_L_Rain_Cold,0,1,3.018239492,11.72222222,1.050505051,0,0,0,0,1,0,0,frontal_attack,1944,12
+479,1,WORLD WAR II,SARRE-UNION,Europe,US Military,German Army,Prepared Defense,Rolling_Mixed,Dry_Overcast_Temperate,0,1,3.271508934,10.30434783,1,0,0,0,0,1,0,1,frontal_attack,1944,12
+399,1,WORLD WAR II,BATTIPAGLIA II,Europe,British Army,German Army,Delay,Rolling_Mixed,Dry_Sunny_Temperate,0,1,2.10578985,1.672413793,1.9,0,-1,0,0,1,0,1,frontal_attack,1943,9
+400,1,WORLD WAR II,EBOLI,Europe,US Military,German Army,Delay,Rolling_Mixed,Dry_Sunny_Temperate,0,1,2.324082363,1.796610169,1.325,0,-1,0,0,1,0,1,frontal_attack,1943,9
+503,1,WORLD WAR II,BEREZINA RIVER,USSR,Soviet Union,German Army,Hasty Defense,Flat_Wooded,Dry_Sunny_Temperate,0,1,1.894117647,13.06666667,2.62195122,0,0,1,0,1,0,1,frontal_attack,1944,6
+445,1,WORLD WAR II,SEZZE,Europe,US Military,German Army,Withdrawal,Rolling_Mixed,Dry_Sunny_Temperate,0,1,2.576541613,2.115384615,1.568181818,0,0,0,0,0,0,1,frontal_attack,1944,5
+361,1,WORLD WAR I,"PICARDY 1918, I",Europe,British Army,German Army,Fortified Defense,Rolling_Mixed,Wet_L_Rain_Temperate,2,1,1,0.403669725,1.333333333,0,0,2,0,1,1,1,frontal_attack,1918,8
+319,1,WORLD WAR I,CAMBRAI I,Europe,British Army,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,2,0,1.2,0.352941176,1.111111111,0,0,0,0,0,0,1,frontal_attack,1917,11
+303,-1,WORLD WAR I,FIRST SOMME,Europe,British Army,German Army,Fortified Defense,Rolling_Mixed,Wet_H_Rain_Temperate,0,1,2,0.1,3.8425,0,0,0,0,0,0,0,frontal_attack,1916,7
+304,-1,WORLD WAR I,SOMME-FOURTH ARMY ATTACK,Europe,British Army,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,3.052631579,0.1,0.583333333,0,0,0,0,1,0,1,frontal_attack,1916,7
+271,1,WORLD WAR I,PETIT MORIN,Europe,French Army,German Army,Hasty Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,0,1,0.05,1,1,0,0,0,0,0,1,frontal_attack,1914,9
+374,0,WORLD WAR I,MAYACHE RAVINE,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Overcast_Temperate,0,1,2.857819905,1,2,0,-1,2,0,0,0,1,frontal_attack,1918,10
+368,1,WORLD WAR I,ESSEN HOOK,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,2,1,6.574074074,1,2.125,0,-1,1,0,0,0,1,single_envelopment,1918,10
+496,1,WORLD WAR II,PROKHOROVKA,USSR,Soviet Union,German Army,Hasty Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,0.947752126,1.287128713,3.293556086,0,-1,1,1,0,1,0,frontal_attack,1943,7
+362,1,WORLD WAR I,"PICARDY 1918, II",Europe,British Army,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,1,1,1,0,0,2,0,1,0,1,frontal_attack,1918,8
+355,1,WORLD WAR I,BEAUREPAIRE FARM,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Overcast_Temperate,2,1,7.92920354,1,8.833333333,0,0,1,0,1,0,1,frontal_attack,1918,7
+343,-1,WORLD WAR I,NORTH WOOD II,Europe,US Military,German Army,Fortified Defense,Rugged_Wooded,Dry_Overcast_Temperate,0,-1,1.18837535,1,0.6,0,-1,1,0,0,0,0,frontal_attack,1918,6
+514,1,WORLD WAR II,SEELOW HEIGHTS,Europe,Soviet Union,German Army,Fortified Defense,Rugged_Mixed,Dry_Sunny_Temperate,0,1,3.51480698,15.6,8.961538462,2,2,2,2,1,0,2,frontal_attack,1945,4
+501,1,WORLD WAR II,NIKOPOL BRIDGEHEAD,USSR,Soviet Union,German Army,Fortified Defense,Flat_Mixed,Wet_L_Rain_Cold,0,1,3.04981774,2.5,4.568181818,0,0,2,2,1,2,1,frontal_attack,1944,1
+506,1,WORLD WAR II,BRODY (PHASE II),USSR,Soviet Union,German Army,Prepared Defense,Flat_Wooded,Dry_Sunny_Temperate,0,1,2.984496124,0.533980583,6.970873786,0,0,1,0,1,0,1,frontal_attack,1944,7
+457,1,WORLD WAR II,ST. LO,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Overcast_Temperate,0,1,2.4304,4.652173913,1.428571429,0,0,0,1,0,0,1,frontal_attack,1944,7
+446,-1,WORLD WAR II,VELLETRI,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,-1,1,1.677861605,7.107692308,1.4375,-1,0,0,0,1,-1,1,frontal_attack,1944,5
+444,1,WORLD WAR II,CISTERNA,Europe,US Military,German Army,Fortified Defense,Flat_Mixed,Wet_L_Rain_Temperate,2,1,1.674295775,2.163265306,2.364705882,0,0,0,0,0,0,1,frontal_attack,1944,5
+288,-1,WORLD WAR I,EASTERN CHAMPAGNE,Europe,French Army,German Army,Fortified Defense,Flat_Mixed,Dry_Sunny_Temperate,0,0,1.914832199,0.403669725,1.870212766,0,0,0,0,0,0,0,frontal_attack,1915,2
+372,1,WORLD WAR I,MEUSE-ARGONNE II,Europe,French Army,German Army,Fortified Defense,Rolling_Mixed,Dry_Overcast_Temperate,0,1,1.666666667,1,1,0,-1,2,0,0,0,1,frontal_attack,1918,10
+380,1,WORLD WAR I,MEUSE-ARGONNE III,Europe,French Army,German Army,Prepared Defense,Rolling_Mixed,Dry_Overcast_Temperate,0,1,1.578365865,1,1,0,-1,2,0,0,0,1,frontal_attack,1918,11
+365,1,WORLD WAR I,MEUSE-ARGONNE I,Europe,US Military,German Army,Fortified Defense,Rugged_Wooded,Dry_Overcast_Temperate,1,1,1.578947368,1,8.833333333,0,-1,1,0,0,0,1,frontal_attack,1918,9
+356,1,WORLD WAR I,CRAVANCON FERME-CHAUDUN,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Overcast_Temperate,2,1,4.274793388,1,1.933333333,0,0,1,0,0,0,1,frontal_attack,1918,7
+306,0,WORLD WAR I,SOMME-BAZENTIN RIDGE,Europe,British Army,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,2,1,3,0.05,1,0,0,0,0,1,0,1,frontal_attack,1916,7
+373,0,WORLD WAR I,EXERMONT-MONTREFAGNE,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Overcast_Temperate,0,1,1.644375963,1,1.028571429,0,-1,2,0,0,0,1,frontal_attack,1918,10
+376,1,WORLD WAR I,FERME DES GRANGES-FLEVILLE,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Overcast_Temperate,0,1,0.446254072,1,1.090909091,0,-1,2,0,0,0,1,frontal_attack,1918,10
+424,1,WORLD WAR II,CAMPOLEONE,Europe,British Army,German Army,Prepared Defense,Flat_Mixed,Dry_Sunny_Cold,0,1,1.176712147,0.77173913,1.967479675,0,-1,0,0,0,0,1,frontal_attack,1944,1
+416,-1,WORLD WAR II,POZZILLI,Europe,US Military,German Army,Fortified Defense,Rugged_Mixed,Wet_L_Rain_Temperate,0,1,2.650624429,1.962962963,2.2,0,-1,0,-1,0,0,0,frontal_attack,1943,11
+408,-1,WORLD WAR II,DRAGONI,Europe,US Military,German Army,Delay,Rolling_Mixed,Wet_L_Rain_Temperate,0,1,3.30628882,1.927272727,1.980392157,0,0,0,0,0,0,1,frontal_attack,1943,10
+443,1,WORLD WAR II,ANZIO BREAKOUT,Europe,US Military,German Army,Fortified Defense,Flat_Mixed,Wet_L_Rain_Temperate,2,1,1.745922747,4.764044944,1.420560748,0,0,0,0,0,0,1,frontal_attack,1944,5
+413,1,WORLD WAR II,SANTA MARIA OLIVETO,Europe,US Military,German Army,Prepared Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,2.668881506,3.533333333,2.243902439,0,-1,0,0,0,0,0,frontal_attack,1943,11
+406,1,WORLD WAR II,MONTE ACERO,Europe,US Military,German Army,Delay,Rugged_Mixed,Dry_Sunny_Temperate,0,1,3.304584305,2.409090909,2.069767442,0,0,0,0,0,0,1,frontal_attack,1943,10
+403,1,WORLD WAR II,CAIAZZO,Europe,US Military,German Army,Delay,Rolling_Mixed,Dry_Sunny_Temperate,0,1,2.82983683,2.523809524,2.039215686,0,0,0,0,0,0,1,river_crossing,1943,10
+451,-1,WORLD WAR II,LANUVIO,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,2.832351015,4.764044944,1.540983607,0,-1,0,0,0,0,1,frontal_attack,1944,5
+415,-1,WORLD WAR II,MONTE LUNGO,Europe,US Military,German Army,Fortified Defense,Rugged_Mixed,Dry_Sunny_Temperate,0,1,2.528175449,1.962962963,2.2,0,-1,0,0,0,0,0,frontal_attack,1943,11
+418,0,WORLD WAR II,MONTE ROTONDO,Europe,US Military,German Army,Fortified Defense,Rugged_Mixed,Wet_L_Rain_Temperate,0,1,2.058675397,2.523809524,2,0,-1,0,-1,0,0,0,frontal_attack,1943,11
+422,1,WORLD WAR II,APRILIA I,Europe,British Army,German Army,Hasty Defense,Flat_Mixed,Wet_H_Rain_Temperate,1,1,2.866666667,1.543478261,3.666666667,0,-1,0,0,0,0,1,frontal_attack,1944,1
+450,-1,WORLD WAR II,FOSSO DI CAMPOLEONE,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,1.88032403,2.81,1.247863248,0,0,0,0,0,0,1,frontal_attack,1944,5
+448,-1,WORLD WAR II,VILLA CROCETTA,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,1.312431644,1.436619718,0.794871795,0,0,0,0,0,0,1,frontal_attack,1944,5
+606,-1,WORLD WAR II,RAPIDO SOUTH I,Europe,US Military,German Army,Fortified Defense,Flat_Bare,Wet_L_Rain_Cold,0,1,4.277777778,1.071428571,2.904761905,-1,0,0,0,0,-1,-1,frontal_attack,1944,1
+607,-1,WORLD WAR II,RAPIDO SOUTH II,Europe,US Military,German Army,Fortified Defense,Flat_Bare,Wet_L_Rain_Cold,0,1,4.187777778,1.071428571,2.904761905,-1,0,0,0,0,-1,-1,frontal_attack,1944,1
+364,1,WORLD WAR I,LAHAYVILLE-BOIS DE LAMARCHE,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Wet_H_Rain_Temperate,1,1,6.319617225,1,7.6,0,-1,1,0,0,0,1,frontal_attack,1918,9
+462,1,WORLD WAR II,MELUN,Europe,US Military,German Army,Prepared Defense,Rolling_Mixed,Wet_L_Rain_Temperate,0,1,2.872,19.875,4.5625,0,0,1,1,1,0,1,river_crossing,1944,8
+263,-1,WORLD WAR I,THE ARDENNES,Europe,French Army,German Army,Hasty Defense,Rolling_Wooded,Wet_Overcast_Temperate,0,0,1,0.352941176,1,0,0,0,0,0,0,0,frontal_attack,1914,8
+318,-1,WORLD WAR I,YPRES III,Europe,British Army,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,1.9,0.1,2.090384615,0,0,0,0,0,0,1,frontal_attack,1917,7
+317,1,WORLD WAR I,MESSINES,Europe,British Army,German Army,Fortified Defense,Rugged_Mixed,Dry_Sunny_Temperate,1,1,1.8,0.352941176,2.266,0,0,0,0,0,1,1,frontal_attack,1917,6
+455,1,WORLD WAR II,TARTO-TIBER,Europe,British Army,German Army,Fortified Defense,Flat_Mixed,Dry_Sunny_Temperate,0,1,3.501704284,1.470588235,1.6,0,-1,0,0,0,0,1,frontal_attack,1944,6
+441,0,WORLD WAR II,MOLETTA OFFENSIVE,Europe,British Army,German Army,Fortified Defense,Flat_Mixed,Wet_L_Rain_Temperate,0,1,1.379982497,1.543478261,1.086956522,0,0,0,0,0,0,0,river_crossing,1944,5
+449,1,WORLD WAR II,ARDEA,Europe,British Army,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,2.021702404,1.651315789,1.625,0,0,0,0,0,0,1,river_crossing,1944,5
+497,1,WORLD WAR II,KURSK COUNTEROFFENSIVE (SOUTHERN SECTOR),USSR,Soviet Union,German Army,Prepared Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,3.502142857,3.821666667,3.8875,1,0,2,2,1,2,2,frontal_attack,1943,8
+335,0,WORLD WAR I,BELLEAU WOOD,Europe,US Military,German Army,Hasty Defense,Rugged_Wooded,Dry_Sunny_Temperate,0,0,1.466283406,1,1.5,-1,-1,1,0,0,0,0,frontal_attack,1918,6
+269,0,WORLD WAR I,OURCQ I,Europe,French Army,German Army,Hasty Defense,Rolling_Mixed,Dry_Sunny_Temperate,-1,0,2.222222222,0.035714286,0,-1,0,0,0,0,0,-1,frontal_attack,1914,9
+442,0,WORLD WAR II,ANZIO-ALBANO ROAD,Europe,British Army,German Army,Fortified Defense,Flat_Mixed,Wet_L_Rain_Temperate,0,1,1.526315789,1.894736842,1.041666667,0,0,0,0,0,0,1,frontal_attack,1944,5
+447,0,WORLD WAR II,CAMPOLEONE,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,1.7980742,5.368421053,0.91509434,0,0,0,0,0,0,1,frontal_attack,1944,5
+453,0,WORLD WAR II,VIA ANZIATE,Europe,US Military,German Army,Fortified Defense,Rolling_Bare,Dry_Sunny_Temperate,0,1,1.225863412,4.457142857,0.599009901,0,-1,0,0,0,0,1,frontal_attack,1944,6
+261,-1,WORLD WAR I,ALSACE-LORRAINE I,Europe,French Army,German Army,Delay,Rolling_Mixed,Dry_Sunny_Temperate,0,0,1,0.403669725,1,0,0,0,0,0,0,0,frontal_attack,1914,8
+315,0,WORLD WAR I,ARRAS,Europe,British Army,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,1,1,2.3,0.035714286,2.778106509,0,0,0,0,0,0,1,frontal_attack,1917,4
+289,-1,WORLD WAR I,NEUVE CHAPELLE,Europe,British Army,German Army,Fortified Defense,Flat_Mixed,Dry_Overcast_Temperate,1,1,0.32673031,0.05,3.8425,0,0,0,0,0,0,0,frontal_attack,1915,3
+292,-1,WORLD WAR I,LOOS,Europe,British Army,German Army,Fortified Defense,Flat_Mixed,Dry_Sunny_Temperate,0,0,1,0.1,1,0,0,0,0,0,0,0,frontal_attack,1915,9
+291,-1,WORLD WAR I,FESTUBERT,Europe,British Army,German Army,Fortified Defense,Flat_Mixed,Wet_L_Rain_Temperate,0,0,1,0.352941176,0,0,0,0,-1,0,0,0,frontal_attack,1915,5
+499,1,WORLD WAR II,MELITOPOL,USSR,Soviet Union,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,2.498685714,2.593333333,2.653846154,0,-1,-1,1,1,1,0,frontal_attack,1943,9
+381,1,WORLD WAR I,REMILLY-AILLICOURT,Europe,US Military,German Army,Prepared Defense,Rolling_Mixed,Wet_H_Rain_Temperate,0,1,4.087837838,0.403669725,6.705882353,0,-1,2,0,1,0,1,frontal_attack,1918,11
+429,-1,WORLD WAR II,FACTORY COUNTERATTACK,Europe,US Military,German Army,Fortified Defense,Flat_Mixed,Wet_L_Rain_Temperate,0,1,1.89345768,2.5,1.519607843,0,1,0,0,0,0,1,frontal_attack,1944,2
+468,-1,WORLD WAR II,SCHMIDT,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Wet_L_Rain_Temperate,0,1,1,1.378787879,1.514018692,0,0,0,-1,0,0,0,river_crossing,1944,11
+358,1,WORLD WAR I,AISNE-MARNE II,Europe,French Army,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,1,0.1,1.891891892,0,0,2,0,1,0,1,frontal_attack,1918,7
+512,0,WORLD WAR II,CIECHANOW (PHASE I),Europe,Soviet Union,German Army,Fortified Defense,Rugged_Wooded,Wet_L_Rain_Cold,0,0,3.483870968,6.083333333,5.384615385,0,0,1,0,1,0,0,frontal_attack,1945,1
+513,1,WORLD WAR II,CIECHANOW (PHASE II),Europe,Soviet Union,German Army,Fortified Defense,Rugged_Wooded,Wet_L_Rain_Cold,0,0,3.106410256,5.9375,4.928571429,0,0,1,0,1,0,1,frontal_attack,1945,1
+467,1,WORLD WAR II,WESTWALL,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Wet_L_Rain_Temperate,0,1,2.337237182,4.952380952,2.017241379,0,0,0,0,0,0,1,river_crossing,1944,10
+334,1,WORLD WAR I,CANTIGNY,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Overcast_Temperate,2,-1,11.97103448,1,8.033898305,0,-1,1,0,0,0,0,frontal_attack,1918,5
+459,1,WORLD WAR II,OPERATION COBRA,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,4.104234528,10.48387097,2.490566038,0,0,0,1,0,0,1,frontal_attack,1944,7
+469,1,WORLD WAR II,SEILLE-NIED,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Wet_H_Rain_Cold,1,1,4.221765304,10.76056338,5.484848485,0,0,2,1,1,0,1,river_crossing,1944,11
+458,-1,WORLD WAR II,OPERATION GOODWOOD,Europe,British Army,German Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,1,1,1.325443478,2.59280303,2.465753425,0,0,0,1,0,-1,0,frontal_attack,1944,7
+505,1,WORLD WAR II,BRODY (PHASE I),USSR,Soviet Union,German Army,Prepared Defense,Flat_Wooded,Dry_Sunny_Temperate,0,1,11.81818182,0.915966387,4.928571429,0,0,1,0,1,0,1,frontal_attack,1944,7
+434,1,WORLD WAR II,SAN MARTINO,Europe,US Military,German Army,Fortified Defense,Rugged_Bare,Dry_Sunny_Temperate,1,1,2.207345535,5.095238095,2.105263158,0,0,0,0,0,0,1,frontal_attack,1944,5
+440,1,WORLD WAR II,TERRACINA,Europe,US Military,German Army,Hasty Defense,Rugged_Mixed,Dry_Sunny_Temperate,0,1,2.710055614,5.038461538,3.7,0,0,0,0,1,0,1,frontal_attack,1944,5
+435,1,WORLD WAR II,CASTELLONORATO,Europe,US Military,German Army,Fortified Defense,Rugged_Bare,Dry_Sunny_Temperate,0,1,2.1944,5.904761905,2.109589041,0,0,0,0,1,0,1,frontal_attack,1944,5
+438,1,WORLD WAR II,MONTE GRANDE (ROME),Europe,US Military,German Army,Hasty Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,2.869822485,5.652173913,3.3,0,0,0,0,1,0,1,frontal_attack,1944,5
+433,1,WORLD WAR II,SANTA MARIA INFANTE,Europe,US Military,German Army,Fortified Defense,Rugged_Bare,Dry_Sunny_Temperate,1,1,2.021837838,7.323529412,1.300813008,0,0,0,0,0,0,1,frontal_attack,1944,5
+436,1,WORLD WAR II,SPIGNO,Europe,US Military,German Army,Delay,Rugged_Bare,Dry_Sunny_Temperate,0,1,2.751841275,6.225,1.296875,0,0,0,0,1,0,1,frontal_attack,1944,5
+439,1,WORLD WAR II,ITRI-FONDI,Europe,US Military,German Army,Delay,Rugged_Mixed,Dry_Sunny_Temperate,0,1,2.692319254,4,3.15,0,0,0,0,1,0,1,frontal_attack,1944,5
+437,1,WORLD WAR II,FORMIA,Europe,US Military,German Army,Delay,Rugged_Bare,Dry_Sunny_Temperate,0,1,3.040513964,7.5,2.74137931,0,0,0,0,1,0,1,frontal_attack,1944,5
+351,1,WORLD WAR I,AISNE-MARNE I,Europe,French Army,German Army,Fortified Defense,Rolling_Mixed,Dry_Overcast_Temperate,1,1,0.8,0.035714286,1.75,0,0,1,0,0,0,1,frontal_attack,1918,7
+490,1,WORLD WAR II,POGORELOYE GORODISHCHE,USSR,Soviet Union,German Army,Prepared Defense,Flat_Wooded,Dry_Sunny_Temperate,1,-1,4.501869547,2.089147287,2.393442623,-1,-1,0,0,0,0,0,frontal_attack,1942,8
+510,1,WORLD WAR II,VISTULA-ODER,USSR,Soviet Union,German Army,Prepared Defense,Flat_Mixed,Dry_Sunny_Cold,0,1,3.928571429,3.525,5.898360656,2,2,2,2,1,2,2,frontal_attack,1945,1
+511,1,WORLD WAR II,EAST PRUSSIA,Europe,Soviet Union,German Army,Fortified Defense,Rolling_Mixed,Wet_L_Rain_Cold,0,1,1.564102564,2.907142857,2.707317073,0,2,2,2,1,0,2,frontal_attack,1945,1
+489,1,WORLD WAR II,MOSCOW COUNTEROFFENSIVE,USSR,Soviet Union,German Army,Hasty Defense,Rolling_Mixed,Dry_Sunny_Cold,2,0,1.204886364,0.784705882,1.67804878,0,-1,2,2,0,2,1,frontal_attack,1941,12
+504,1,WORLD WAR II,LVOV-SANDOMIERZ,USSR,Soviet Union,German Army,Prepared Defense,Flat_Mixed,Dry_Sunny_Temperate,1,1,0.32673031,2.198888889,2.346875,-1,0,2,2,1,2,2,frontal_attack,1944,7
+363,1,WORLD WAR I,ST. MIHIEL,Europe,US Military,German Army,Fortified Defense,Rolling_Mixed,Wet_Overcast_Temperate,0,1,1,1,3.01,0,-1,1,0,0,0,1,single_envelopment,1918,9
+659,0,WORLD WAR II,BOOS,Europe,French Army,German Army,Prepared Defense,Rolling_Mixed,Wet_L_Rain_Temperate,0,1,1,1.4,0,0,1,2,0,0,0,2,frontal_attack,1940,6
+643,1,WORLD WAR II,TARTO-TIBER,Europe,British Army,German Army,Fortified Defense,Flat_Mixed,Dry_Overcast_Temperate,0,1,1,1.585106383,1.6,0,-1,2,0,0,0,0,frontal_attack,1944,5
+636,-1,WORLD WAR II,TARGUL FRUMOS,USSR,USSR,German Army,Delay,Flat_Bare,Wet_L_Rain_Temperate,0,1,1,2.5625,1,0,0,-1,0,0,0,2,frontal_attack,1944,5
+602,-1,WORLD WAR II,SIDI BOU ZID II,North Africa,US Military,German Army,Hasty Defense,Flat_Bare,Dry_Sunny_Cold,0,-1,0.32673031,0.488888889,0.742857143,-1,-1,0,0,-1,-1,-1,frontal_attack,1943,2
+404,-1,WORLD WAR II,CAPUA,Europe,British Army,German Army,Prepared Defense,Flat_Mixed,Dry_Sunny_Temperate,0,1,2.107125,3.318181818,2.711864407,0,0,0,0,0,0,1,river_crossing,1943,10
+407,1,WORLD WAR II,TRIFLISCO,Europe,US Military,German Army,Prepared Defense,Rolling_Mixed,Dry_Sunny_Temperate,1,1,2.548413793,4.818181818,1.915254237,0,0,0,0,0,0,1,river_crossing,1943,10
+410,1,WORLD WAR II,MONTE GRANDE (VOLTURNO),Europe,British Army,German Army,Prepared Defense,Rolling_Mixed,Wet_L_Rain_Temperate,0,1,2.265506285,3.318181818,2.285714286,0,-1,0,-1,0,0,0,frontal_attack,1943,10
+452,1,WORLD WAR II,LARIANO,Europe,US Military,German Army,Prepared Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,1.740009222,3.533333333,1.026785714,0,0,0,0,1,0,1,frontal_attack,1944,6
+454,1,WORLD WAR II,VALMONTONE,Europe,US Military,German Army,Hasty Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,2.631490456,4.064516129,1.327272727,0,0,0,0,1,0,1,frontal_attack,1944,6
+615,-1,WORLD WAR II,SCHMIDT III,Europe,US Military,German Army,Prepared Defense,Rolling_Wooded,Wet_L_Rain_Temperate,0,1,1.337837838,3.525,1.394736842,0,0,0,0,0,0,0,frontal_attack,1944,11
+614,-1,WORLD WAR II,SCHMIDT II,Europe,US Military,German Army,Prepared Defense,Rugged_Wooded,Wet_L_Rain_Temperate,0,1,1.260869565,3.533333333,1.394736842,0,0,0,0,0,0,0,frontal_attack,1944,11
+613,-1,WORLD WAR II,SCHMIDT I,Europe,US Military,German Army,Prepared Defense,Rolling_Mixed,Wet_L_Rain_Temperate,0,1,1.233830846,0.733333333,1.868421053,0,0,0,0,0,0,0,frontal_attack,1944,11
+616,1,WORLD WAR II,WAHLERSCHEID,Europe,US Military,German Army,Prepared Defense,Rolling_Wooded,Wet_L_Rain_Cold,0,1,5.928571429,3.533333333,7.125,0,1,0,0,0,-1,1,frontal_attack,1944,12
+476,1,WORLD WAR II,BAERENDORF II,Europe,US Military,German Army,Prepared Defense,Rolling_Mixed,Dry_Overcast_Cold,0,1,2.267609659,5.861111111,2.229885057,0,0,0,0,0,0,1,frontal_attack,1944,11
+475,1,WORLD WAR II,BAERENDORF I,Europe,US Military,German Army,Hasty Defense,Rolling_Mixed,Dry_Overcast_Cold,0,1,1.478755125,3.533333333,0.796875,0,0,0,0,0,0,0,river_crossing,1944,11
+477,1,WORLD WAR II,BURBACH-DURSTEL,Europe,US Military,German Army,Prepared Defense,Rolling_Mixed,Wet_L_Rain_Cold,0,1,2.417994935,4.906976744,1.283950617,0,0,0,0,0,0,1,frontal_attack,1944,11
+658,-1,WORLD WAR II,ARRAS,Europe,British Army,German Army,Hasty Defense,Rolling_Mixed,Dry_Overcast_Temperate,0,1,1,0.403669725,0,0,1,2,0,1,0,0,single_envelopment,1940,5
+392,1,WORLD WAR II,SEDJANNE-BIZERTE,North Africa,US Military,German Army,Fortified Defense,Rugged_Mixed,Dry_Sunny_Temperate,0,1,4.8196,18.8,2.941176471,0,0,1,1,1,0,1,frontal_attack,1943,4
+312,1,WORLD WAR I,ASIAGO,Europe,Austrian Army,Italian Army,Hasty Defense,Rugged_Mixed,Dry_Sunny_Temperate,0,0,1.805084746,0.035714286,3.210272873,0,0,0,0,0,0,1,frontal_attack,1916,5
+323,1,WORLD WAR I,CAPORETTO (TWELFTH ISONZO),Europe,German Army,Italian Army,Fortified Defense,Rugged_Bare,Dry_Sunny_Temperate,1,0,1,0.352941176,1.111111111,1,0,1,0,0,0,1,frontal_attack,1917,10
+383,-1,WORLD WAR I,THE PIAVE,Europe,Austrian Army,Italian Army,Fortified Defense,Rolling_Mixed,Wet_H_Rain_Temperate,0,-1,1,1,1.064887122,0,0,0,0,0,-1,0,frontal_attack,1918,6
+522,1,WORLD WAR II,TOMB HILL-OUKI,Pacific,US Military,Japanse Army,Fortified Defense,Rugged_Mixed,Wet_H_Rain_Temperate,0,1,3.828154724,4.818181818,6.90625,0,0,0,0,0,0,0,frontal_attack,1945,4
+523,1,WORLD WAR II,SKYLINE RIDGE-ROCKY CRAGS,Pacific,US Military,Japanse Army,Fortified Defense,Rugged_Mixed,Dry_Sunny_Temperate,0,1,6.265769231,4.764044944,5.815789474,0,0,1,0,0,0,0,frontal_attack,1945,4
+538,1,WORLD WAR II,ADVANCE TO SHURI LINE OUTPOSTS,Pacific,US Military,Japanse Army,Fortified Defense,Rolling_Mixed,Dry_Overcast_Temperate,0,1,6.340689655,4.652173913,5.4375,0,0,0,0,0,0,0,frontal_attack,1945,4
+539,-1,WORLD WAR II,KAKAZU AND TOMBSTONE RIDGES,Pacific,US Military,Japanse Army,Fortified Defense,Rolling_Mixed,Wet_H_Rain_Temperate,0,1,7.082333333,4.952380952,7.6875,0,0,0,0,0,0,0,frontal_attack,1945,4
+540,1,WORLD WAR II,NISHIBARU RIDGE-TANABARU ESCARPMENT,Pacific,US Military,Japanse Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,5.721,4.952380952,6.705882353,0,0,0,0,1,0,1,frontal_attack,1945,4
+537,1,WORLD WAR II,ADVANCE FROM THE BEACH,Pacific,US Military,Japanse Army,Delay,Rolling_Mixed,Dry_Sunny_Temperate,0,1,9.541,4.764044944,3.666666667,0,1,0,0,0,0,1,frontal_attack,1945,4
+520,1,WORLD WAR II,ADVANCE FROM THE BEACHHEAD,Pacific,US Military,Japanse Army,Delay,Flat_Mixed,Dry_Sunny_Temperate,0,1,16.34857143,4.764044944,1.2,0,1,1,0,0,0,1,frontal_attack,1945,4
+524,-1,WORLD WAR II,KOCHI RIDGE-ONAGA I,Pacific,US Military,Japanse Army,Fortified Defense,Rugged_Mixed,Wet_L_Rain_Temperate,0,1,2.9188,4.952380952,5.075,0,0,0,0,0,-1,0,double_envelopment,1945,4
+525,-1,WORLD WAR II,KOCHI RIDGE-ONAGA II,Pacific,US Military,Japanse Army,Fortified Defense,Rugged_Mixed,Dry_Sunny_Temperate,0,1,3.552444444,4.906976744,5.65,0,0,0,0,0,0,0,single_envelopment,1945,4
+526,-1,WORLD WAR II,KOCHI RIDGE-ONAGA III,Pacific,US Military,Japanse Army,Fortified Defense,Rugged_Mixed,Dry_Sunny_Temperate,0,1,3.892345679,4.952380952,8.225,0,0,0,0,-1,0,0,double_envelopment,1945,4
+528,1,WORLD WAR II,KOCHI RIDGE IV,Pacific,US Military,Japanse Army,Fortified Defense,Rugged_Mixed,Dry_Sunny_Temperate,0,1,2.939494163,4.906976744,6.966666667,0,0,0,0,0,0,0,frontal_attack,1945,5
+531,-1,WORLD WAR II,SHURI ENVELOPMENT (PHASE II),Pacific,US Military,Japanse Army,Fortified Defense,Rugged_Mixed,Wet_H_Rain_Temperate,0,1,5.28,4.764044944,7.125,0,0,1,0,0,0,0,frontal_attack,1945,5
+532,1,WORLD WAR II,SHURI ENVELOPMENT (PHASE III),Pacific,US Military,Japanse Army,Fortified Defense,Rugged_Mixed,Wet_H_Rain_Temperate,0,1,5.848076923,4.818181818,5.384615385,0,0,1,0,0,0,0,frontal_attack,1945,5
+545,1,WORLD WAR II,ADVANCE TO YUZA-DAKE_YAEJU-DAKE ESCARPMENT,Pacific,US Military,Japanse Army,Prepared Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,4.69425,3.533333333,8.428571429,0,1,1,-1,0,0,1,frontal_attack,1945,6
+546,0,WORLD WAR II,ATTACK ON YUZA-DAKE_YAEJU-DAKE ESCARPMENT,Pacific,US Military,Japanse Army,Prepared Defense,Rolling_Mixed,Dry_Overcast_Temperate,0,1,4.390588235,3.525,8.961538462,0,1,1,0,1,0,1,frontal_attack,1945,6
+542,0,WORLD WAR II,ATTACK ON SHURI LINE'S EASTERN FLANK I,Pacific,US Military,Japanse Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,3.730885693,4.952380952,4.617647059,0,0,0,0,0,0,1,frontal_attack,1945,5
+543,0,WORLD WAR II,ATTACK ON SHURI LINE'S EASTERN FLANK II,Pacific,US Military,Japanse Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,4.408871137,4.952380952,6.176470588,0,0,0,0,0,0,1,frontal_attack,1945,5
+544,1,WORLD WAR II,ATTACK ON SHURI LINE'S EASTERN FLANK III,Pacific,US Military,Japanse Army,Fortified Defense,Rolling_Mixed,Wet_L_Rain_Temperate,0,1,4.650579607,4.652173913,5.382352941,0,0,1,0,0,0,1,single_envelopment,1945,5
+518,1,WORLD WAR II,IWO JIMA - SURIBACHI,Pacific,US Military,Japanse Army,Fortified Defense,Rugged_Bare,Dry_Sunny_Temperate,0,1,2,4.952380952,4.928571429,0,0,0,1,1,0,1,frontal_attack,1945,2
+517,1,WORLD WAR II,IWO JIMA - INTO THE MAIN DEFENSES,Pacific,US Military,Japanse Army,Fortified Defense,Rolling_Bare,Dry_Sunny_Temperate,0,1,1.853278689,3.6,8.033898305,0,0,0,1,1,0,1,frontal_attack,1945,2
+529,1,WORLD WAR II,SHURI ENVELOPMENT (PHASE I),Pacific,US Military,Japanse Army,Prepared Defense,Rugged_Mixed,Wet_H_Rain_Temperate,3,1,4.80617136,3.533333333,8.033898305,0,0,1,0,0,0,0,single_envelopment,1945,5
+534,1,WORLD WAR II,HILL 95-II,Pacific,US Military,Japanse Army,Fortified Defense,Rugged_Mixed,Dry_Sunny_Temperate,0,1,6.4008,4.906976744,5.484848485,0,0,1,0,0,0,1,frontal_attack,1945,6
+533,0,WORLD WAR II,HILL 95-I,Pacific,US Military,Japanse Army,Fortified Defense,Rugged_Mixed,Dry_Sunny_Temperate,0,1,4.597428571,4.952380952,5.384615385,0,0,1,0,0,0,0,frontal_attack,1945,6
+535,1,WORLD WAR II,YAEJU-DAKE,Pacific,US Military,Japanse Army,Fortified Defense,Rugged_Mixed,Dry_Sunny_Temperate,0,1,2.0948,4.906976744,8.833333333,0,0,1,0,0,0,1,frontal_attack,1945,6
+536,1,WORLD WAR II,HILLS 153 AND 115,Pacific,US Military,Japanse Army,Fortified Defense,Rugged_Mixed,Dry_Sunny_Temperate,0,1,7.904,4.764044944,5.382352941,0,0,1,0,0,0,1,frontal_attack,1945,6
+547,1,WORLD WAR II,CAPTURE OF YUZA-DAKE_YAEJU-DAKE ESCARPMENT,Pacific,US Military,Japanse Army,Prepared Defense,Rugged_Mixed,Dry_Sunny_Temperate,0,1,5.860615385,3.318181818,8.033898305,0,1,1,1,1,0,1,frontal_attack,1945,6
+515,1,WORLD WAR II,MUTANKIANG,Pacific,Soviet Union,Japanse Army,Fortified Defense,Rolling_Mixed,Wet_L_Rain_Temperate,1,1,1.96,7.333333333,3.058219178,0,0,1,0,0,1,1,river_crossing,1945,8
+521,1,WORLD WAR II,ADVANCE THROUGH THE OUTPOSTS,Pacific,US Military,Japanse Army,Fortified Defense,Rugged_Mixed,Dry_Overcast_Temperate,0,1,6.344137931,4.952380952,5.40625,0,0,0,0,0,0,0,frontal_attack,1945,4
+541,1,WORLD WAR II,MAEDA ESCARPMENT,Pacific,US Military,Japanse Army,Fortified Defense,Rolling_Mixed,Wet_H_Rain_Temperate,0,1,4.63974359,4.906976744,5.555555556,0,0,0,-1,0,0,1,frontal_attack,1945,4
+519,1,WORLD WAR II,IWO JIMA - FINAL PHASE,Pacific,US Military,Japanse Army,Fortified Defense,Rolling_Bare,Dry_Sunny_Temperate,0,1,11.91806331,3.6,6.7,0,0,0,1,1,0,0,frontal_attack,1945,3
+516,1,WORLD WAR II,TARAWA-BETIO,Pacific,US Military,Japanse Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,1.033912324,3.285714286,5.245283019,0,0,0,1,1,0,1,frontal_attack,1943,11
+293,1,WORLD WAR I,WINTER BATTLE (MASURIA),Europe,German Army,Russian Army,Prepared Defense,Rolling_Mixed,Wet_H_Rain_Cold,2,0,1,0.403669725,1.050505051,0,0,1,1,0,1,1,double_envelopment,1915,2
+278,0,WORLD WAR I,GUMBINNEN,Europe,German Army,Russian Army,Hasty Defense,Flat_Mixed,Dry_Sunny_Temperate,0,0,0.8,0.403669725,0.666666667,0,1,0,0,0,1,0,frontal_attack,1914,8
+280,1,WORLD WAR I,MASURIAN LAKES,Europe,German Army,Russian Army,Prepared Defense,Flat_Wooded,Dry_Sunny_Temperate,0,0,1.057142857,0.05,0,1,1,1,0,0,1,1,frontal_attack,1914,9
+279,1,WORLD WAR I,TANNENBERG,Europe,German Army,Russian Army,Hasty Defense,Flat_Wooded,Dry_Sunny_Temperate,2,0,1,0.035714286,1.363333333,2,1,0,1,0,1,1,frontal_attack,1914,8
+283,-1,WORLD WAR I,GNILA LIPA,Europe,Austrian Army,Russian Army,Hasty Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,0,1,0.1,0.634969325,0,0,0,0,0,0,0,frontal_attack,1914,8
+294,1,WORLD WAR I,GOLICE-TARNOW (OPENING PHASE),Europe,German Army,Russian Army,Prepared Defense,Rolling_Mixed,Dry_Sunny_Temperate,2,0,0.98630137,0.403669725,1.041666667,1,0,2,1,1,0,1,frontal_attack,1915,5
+284,-1,WORLD WAR I,RAVA RUSSKA,Europe,Austrian Army,Russian Army,Hasty Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,0,1,0.05,1,0,0,0,0,0,-1,0,frontal_attack,1914,9
+281,1,WORLD WAR I,KRASNIK,USSR,Austrian Army,Russian Army,Hasty Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,0,1,0.05,1.268115942,0,0,0,0,0,0,0,frontal_attack,1914,8
+282,1,WORLD WAR I,KOMAROV,USSR,Austrian Army,Russian Army,Hasty Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,0,1,0.403669725,1.041666667,0,0,0,0,0,0,0,frontal_attack,1914,8
+285,1,WORLD WAR I,LODZ,USSR,German Army,Russian Army,Hasty Defense,Rolling_Mixed,Wet_L_Rain_Cold,0,0,1,0.352941176,1,1,1,0,0,0,1,0,frontal_attack,1914,11
+286,-1,WORLD WAR I,THE JADAR,Europe,Austrian Army,Serbian Army,Hasty Defense,Rugged_Mixed,Dry_Sunny_Temperate,0,0,1,0.035714286,1,-1,0,0,-1,0,0,-1,frontal_attack,1914,8
+493,1,WORLD WAR II,OPERATION CITADEL (SOUTHERN SECTOR),USSR,German Army,Soviet Union,Prepared Defense,Rolling_Mixed,Wet_L_Rain_Temperate,0,1,1.866666667,5.6,0.222222222,0,0,0,0,0,-1,1,frontal_attack,1943,7
+494,1,WORLD WAR II,OBOYAN-KURSK (PHASE II),USSR,German Army,Soviet Union,Prepared Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,0,1,0.622222222,0.234375,1,1,0,-1,0,-1,1,frontal_attack,1943,7
+495,-1,WORLD WAR II,OBOYAN-KURSK (PHASE III),USSR,German Army,Soviet Union,Prepared Defense,Rolling_Mixed,Dry_Overcast_Temperate,0,0,1,0.661290323,0.216778523,1,1,-1,-1,0,-1,0,frontal_attack,1943,7
+492,1,WORLD WAR II,OBOYAN-KURSK (PHASE I),USSR,German Army,Soviet Union,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,1.377777778,5.818181818,0.347457627,1,0,0,0,0,-1,1,frontal_attack,1943,7
+487,1,WORLD WAR II,ROVNO,USSR,German Army,Soviet Union,Prepared Defense,Rolling_Mixed,Dry_Sunny_Temperate,3,1,0.88,0.897887324,1.12962963,2,2,2,2,1,2,2,frontal_attack,1941,6
+488,-1,WORLD WAR II,DEFENSE OF MOSCOW,USSR,German Army,Soviet Union,Prepared Defense,Rolling_Mixed,Dry_Sunny_Cold,0,1,0.801749271,1.894736842,0.860437257,2,2,0,2,1,2,2,frontal_attack,1941,9
+308,1,WORLD WAR I,CAUCASUS WINTER OFFENSIVE,Middle East,Russian Army,Turkish Army,Fortified Defense,Rugged_Mixed,Wet_H_Rain_Cold,3,0,1,0.1,2.39,1,0,0,1,0,0,1,frontal_attack,1916,1
+299,0,WORLD WAR I,FIRST DARDANELLES LANDING,Middle East,British Army,Turkish Army,Prepared Defense,Rugged_Bare,Dry_Sunny_Temperate,0,0,1,0.035714286,0,0,0,0,0,0,0,0,frontal_attack,1915,4
+300,-1,WORLD WAR I,SUVLA BAY,Middle East,British Army,Turkish Army,Hasty Defense,Rugged_Bare,Dry_Sunny_Temperate,1,0,13.88888889,0.403669725,2.8,-1,0,0,0,0,0,-1,frontal_attack,1915,8
+327,1,WORLD WAR I,GAZA III,Middle East,British Army,Turkish Army,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,2,1,1,1,1.507692308,1,0,0,0,0,0,1,frontal_attack,1917,10
+384,1,WORLD WAR I,MEGIDDO,Middle East,British Army,Turkish Army,Fortified Defense,Rolling_Bare,Dry_Sunny_Temperate,2,1,2.803835616,0.352941176,2.56,1,1,1,0,0,0,1,frontal_attack,1918,9
+325,-1,WORLD WAR I,GAZA I,Middle East,British Army,Turkish Army,Prepared Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,0.961538462,0.403669725,1,0,0,0,0,1,0,1,frontal_attack,1917,3
+328,1,WORLD WAR I,JUNCTION STATION,Middle East,British Army,Turkish Army,Prepared Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,1,5.483870968,0.05,0,1,0,1,0,1,0,1,frontal_attack,1917,11
+301,1,WORLD WAR I,KUT-EL-AMARA,Middle East,British Army,Turkish Army,Fortified Defense,Flat_Bare,Dry_Sunny_Temperate,1,0,0.973451327,0.352941176,0.736842105,1,0,0,-1,0,0,1,single_envelopment,1915,9
+302,-1,WORLD WAR I,CTESIPHON,Middle East,British Army,Turkish Army,Fortified Defense,Flat_Mixed,Dry_Sunny_Temperate,0,1,2.153051181,0.035714286,0.576923077,0,0,0,-1,0,0,0,single_envelopment,1915,11
+326,-1,WORLD WAR I,GAZA II,Middle East,British Army,Turkish Army,Fortified Defense,Flat_Mixed,Dry_Sunny_Temperate,0,1,1.25,1,1,0,0,0,0,0,0,0,frontal_attack,1917,4
+324,1,WORLD WAR I,TIGRIS CROSSING,Middle East,British Army,Turkish Army,Prepared Defense,Flat_Bare,Dry_Sunny_Temperate,0,1,1,0.05,1.912087912,0,0,0,0,1,0,0,frontal_attack,1917,2
+484,-1,WORLD WAR II,BASTOGNE,Europe,German Army,US Military,Hasty Defense,Rolling_Mixed,Wet_L_Rain_Cold,0,-1,1,2.361842105,0,0,0,0,0,0,0,1,frontal_attack,1944,12
+624,1,WORLD WAR II,OUR RIVER NORTH,Europe,German Army,US Military,Hasty Defense,Rugged_Wooded,Dry_Sunny_Cold,3,-1,2.787456446,19.5,4.203389831,0,0,0,0,1,2,1,frontal_attack,1944,12
+611,-1,WORLD WAR II,MORTAIN I,Europe,German Army,US Military,Hasty Defense,Rolling_Mixed,Dry_Sunny_Temperate,2,-1,2.202702703,2.4,0.529411765,0,0,0,0,0,0,1,frontal_attack,1944,8
+623,1,WORLD WAR II,OUR RIVER CENTER,Europe,German Army,US Military,Hasty Defense,Rugged_Wooded,Dry_Sunny_Cold,3,-1,8.202247191,2.904109589,4.5625,0,0,0,0,1,2,1,frontal_attack,1944,12
+612,-1,WORLD WAR II,MORTAIN II,Europe,German Army,US Military,Hasty Defense,Rugged_Mixed,Dry_Sunny_Temperate,2,-1,1.847826087,3.75,0.705882353,0,0,0,0,0,0,1,frontal_attack,1944,8
+482,1,WORLD WAR II,SAUER RIVER,Europe,German Army,US Military,Hasty Defense,Rugged_Mixed,Wet_H_Rain_Cold,2,-1,1,0.1,1.133333333,0,0,0,0,0,0,1,river_crossing,1944,12
+621,1,WORLD WAR II,SCHNEE EIFEL NORTH I,Europe,German Army,US Military,Hasty Defense,Rolling_Mixed,Dry_Sunny_Cold,3,-1,6.975609756,1.470588235,3.47826087,0,0,0,0,1,2,1,frontal_attack,1944,12
+609,1,WORLD WAR II,BOWLING ALLEY II,Europe,German Army,US Military,Prepared Defense,Flat_Bare,Dry_Sunny_Temperate,2,-1,3.116039604,2.4,1.428571429,0,0,0,0,1,0,1,frontal_attack,1944,2
+610,-1,WORLD WAR II,BOWLING ALLEY III,Europe,German Army,US Military,Prepared Defense,Flat_Bare,Dry_Sunny_Temperate,2,-1,2.162162162,2.857142857,1.428571429,0,0,0,0,1,0,1,frontal_attack,1944,2
+390,-1,WORLD WAR II,CHOUIGUI PASS,North Africa,German Army,US Military,Hasty Defense,Rolling_Desert,Dry_Sunny_Temperate,-2,0,2.473404255,0.52,0,0,1,0,0,0,-1,-1,frontal_attack,1942,11
+391,-1,WORLD WAR II,EL GUETTAR,North Africa,German Army,US Military,Hasty Defense,Rolling_Desert,Dry_Sunny_Temperate,2,0,0.467777828,1.373333333,0.5,0,1,0,0,0,-1,1,frontal_attack,1943,3
+603,1,WORLD WAR II,KASSERINE PASS,North Africa,German Army,US Military,Hasty Defense,Rugged_Bare,Wet_H_Rain_Cold,0,1,1.320007543,4.153846154,1.533333333,1,1,1,0,1,1,1,frontal_attack,1943,2
+608,-1,WORLD WAR II,BOWLING ALLEY I,Europe,German Army,US Military,Prepared Defense,Flat_Bare,Dry_Sunny_Temperate,2,-1,3.244444444,1.081081081,1.428571429,0,0,0,0,1,0,1,frontal_attack,1944,2
+342,-1,WORLD WAR I,BOURESCHES II,Europe,German Army,US Military,Prepared Defense,Rolling_Mixed,Unknown,1,1,1.403575504,0.05,2,0,1,-1,0,0,0,1,frontal_attack,1918,6
+460,-1,WORLD WAR II,MORTAIN,Europe,German Army,US Military,Hasty Defense,Rolling_Mixed,Dry_Sunny_Temperate,2,-1,1.862454346,0.352941176,1.135416667,0,0,0,-1,0,0,1,frontal_attack,1944,8
+618,-1,WORLD WAR II,KRINKELT-ROCHERATH II,Europe,German Army,US Military,Hasty Defense,Rolling_Bare,Wet_L_Rain_Cold,0,-1,1.378787879,3.666666667,1.903846154,0,0,0,0,1,0,1,frontal_attack,1944,12
+617,1,WORLD WAR II,KRINKELT-ROCHERATH I,Europe,German Army,US Military,Hasty Defense,Rugged_Wooded,Wet_L_Rain_Cold,0,-1,2.43183493,2.2,3,0,-1,0,0,1,0,1,frontal_attack,1944,12
+622,1,WORLD WAR II,SCHNEE EIFEL NORTH II,Europe,German Army,US Military,Prepared Defense,Rugged_Wooded,Dry_Sunny_Cold,3,-1,3.084337349,0.915966387,3.157894737,0,1,0,0,1,2,1,single_envelopment,1944,12
+619,1,WORLD WAR II,SCHNEE EIFEL CENTER,Europe,German Army,US Military,Prepared Defense,Rugged_Wooded,Dry_Sunny_Cold,3,-1,1.051282051,1,3.777777778,0,1,0,0,1,2,1,frontal_attack,1944,12
+620,1,WORLD WAR II,SCHNEE EIFEL SOUTH,Europe,German Army,US Military,Prepared Defense,Rugged_Wooded,Dry_Sunny_Cold,3,-1,2.558139535,1,1.118644068,0,1,0,0,1,2,1,frontal_attack,1944,12
+432,-1,WORLD WAR II,FIOCCIA,Europe,German Army,US Military,Fortified Defense,Rolling_Mixed,Wet_L_Rain_Temperate,0,-1,0.797277316,0.424528302,0.877005348,0,0,0,0,0,0,0,frontal_attack,1944,2
+398,-1,WORLD WAR II,TOBACCO FACTORY,Europe,German Army,US Military,Hasty Defense,Rolling_Mixed,Dry_Sunny_Temperate,0,-1,1.160901426,0.924528302,0.946428571,0,0,1,0,0,0,0,frontal_attack,1943,9
+427,0,WORLD WAR II,MOLETTA RIVER DEFENSE,Europe,German Army,US Military,Prepared Defense,Flat_Mixed,Dry_Sunny_Cold,0,-1,1.4836,1,0.763157895,0,0,0,0,0,0,1,river_crossing,1944,2
+430,-1,WORLD WAR II,BOWLING ALLEY,Europe,German Army,US Military,Fortified Defense,Flat_Mixed,Dry_Sunny_Temperate,2,-1,2.047911788,1.896226415,1.722826087,0,0,0,0,1,0,1,frontal_attack,1944,2
+527,-1,WORLD WAR II,JAPANESE COUNTERATTACK,Pacific,Japanese Army,US Military,Hasty Defense,Rugged_Mixed,Dry_Sunny_Temperate,0,-1,0.446254072,2.361842105,0.303030303,0,0,0,0,0,0,1,frontal_attack,1945,5
+530,-1,WORLD WAR II,JAPANESE COUNTERATTACKS,Pacific,Japanese Army,US Military,Hasty Defense,Rolling_Mixed,Wet_L_Rain_Temperate,2,-1,0.253533625,2.5,0.050955414,0,0,0,0,0,0,0,frontal_attack,1945,5
+601,1,WORLD WAR II,SIDI BOU ZID I,North Africa,German Army,US Military,Hasty Defense,Flat_Bare,Dry_Sunny_Cold,2,1,1.200075005,1.956521739,0.744680851,1,1,0,0,1,-1,1,double_envelopment,1943,2
+466,-1,WORLD WAR II,ARRACOURT,Europe,German Army,US Military,Hasty Defense,Rolling_Mixed,Wet_L_Rain_Temperate,0,-1,2.490196078,1.032786885,0.25,-1,0,0,0,0,0,-1,frontal_attack,1944,9
+483,0,WORLD WAR II,ST. VITH,Europe,German Army,US Military,Hasty Defense,Rolling_Mixed,Wet_L_Rain_Cold,0,-1,1,1.651315789,0.87037037,0,0,0,0,0,0,1,frontal_attack,1944,12
+332,1,WORLD WAR I,YVONNE & ODETTE POSITIONS (SECTOR TOULON),Europe,German Army,US Military,Fortified Defense,Rolling_Mixed,Dry_Sunny_Temperate,2,0,4.726153846,0.1,1.5,1,1,0,0,0,1,1,frontal_attack,1918,4

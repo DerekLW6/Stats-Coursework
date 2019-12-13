@@ -1,0 +1,219 @@
+
+---
+title: "Beer Consumption Lab (Cross Validation)"
+author: "Derek Wales"
+date: "06SEP19"
+output:
+  pdf_document: default
+  html_document:
+    highlight: pygments
+    theme: spacelab
+---
+
+```{r setup, include=FALSE}
+# DO NOT ALTER CODE IN THIS CHUNK
+# The very first time you use this R markdown file, you should install each of the packages below.
+# The same goes for other packages you might decide to use
+# Remember that you only need to install each R package once in R (ever -- unless you change computers).
+# All you need to do whenever you need to use the package again (after restarting the R session),
+# is to use the library function to call the package.
+# For example, type install.packages("knitr") in the console to install the knitr package. 
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+library(dplyr)
+library(ggplot2)
+library(caret)
+library(GGally)
+```
+
+* * *
+
+## Lab report
+
+**Load data here**
+```{r}
+beer <- read.csv("consumo_cerveja.csv",stringsAsFactors = FALSE, sep = ",",dec=",")
+# rename the variables
+beer$date <- beer$Data
+beer$temp_median_c <- beer$Temperatura.Media..C.
+beer$temp_min_c <- beer$Temperatura.Minima..C.
+beer$temp_max_c <- beer$Temperatura.Maxima..C.
+beer$precip_mm <- beer$Precipitacao..mm.
+beer$weekend <- factor(beer$Final.de.Semana)
+beer$beer_cons_liters <- as.numeric(beer$Consumo.de.cerveja..litros.)
+beer <- beer[ , 8:ncol(beer)]
+
+```
+
+### Question 1: Make a histogram of beer_cons_liters. Describe the distribution. Is the normality assumption
+# a plausible one here? If you think the histogram does not look normal enough,
+# make a histogram of log(beer_cons_liters). Does that look more normal than beer_cons_liters?
+
+The log distribution looks closer to a normal distribution than the unscaled.
+
+```{r}
+hist(beer$beer_cons_liters)
+hist(log(beer$beer_cons_liters))
+
+```
+
+### Question 2: Make exploratory plots of beer_cons_liters (or log(beer_cons_liters)) versus each potential 
+# predictor. Are all the relationships linear? If any one of them is nonlinear, describe 
+# the distribution.
+
+The most meaningful predictors for Beer consumption in San Paulo seem to be
+rising temperatures and whether or not its a weekend.
+
+```{r}
+ggpairs(beer,columns = 2:7)
+```
+
+
+### Question 3: Does it make sense to include all three of temp_median_c, temp_min_c and temp_max_c as 
+# predictors in a MLR model for predicting beer_cons_liters (or log(beer_cons_liters))? Justify
+# your response in one or two sentences.
+
+No because all of these are correlated which will violate one of the assumptions 
+for using a Linear Model.
+
+```{r}
+ggcorr(beer, label = TRUE)
+```
+
+
+### Question 4: Fit a linear model for beer_cons_liters (or log(beer_cons_liters)) using weekend, precip_mm, and 
+# temp_median_c as your predictors. Interpret all the parameters of the fitted regression model
+# in context of the data. What percent of the variability in beer_cons_liters (or log(beer_cons_liters)) 
+# is explained by your model?
+
+The Adjusted R-Squared value is 0.6554 which means that our model matches real life 65.54%
+percent of the time. 
+
+```{r}
+lm_beer_consumption <- lm(log(beer_cons_liters) ~ weekend + precip_mm + temp_median_c, data = beer)
+summary(lm_beer_consumption)
+```
+
+
+### Question 5: Which of the variables appears to be the best covariate for explaining or predicting beer 
+# consumption? Why?
+
+The variable with the highest t value (aka varies with the results) is the temp_median_c. 
+
+```{r}
+# Enter your code for question 5 here
+```
+
+
+### Question 6:  Are there any potential limitations of the model you have fit? If yes, what are two 
+# potential limitations?
+
+It is not a time series, it does not account for Temperature and percipitation which are 
+often effected by the previous day. Additionally it doesn't account for holidays.
+
+```{r}
+# Enter your code for question 6 here
+```
+
+
+### Question 7: Compute the in-sample root mean squared error (RMSE) for the regression model in question 4.
+# Refer back to the class notes for details on how to compute in-sample (or within-sample) RMSE.
+
+See response below.
+
+```{r}
+y_hat <- exp(predict.lm(lm_beer_consumption))
+y <- na.omit(beer$beer_cons_liters)
+RMSE <- (sqrt((1/length(y))*(sum((y-y_hat)^2))))
+print(RMSE)
+```
+
+### Question 8: Write a code for doing k-fold cross validation. Refer back to the class notes for details on
+# k -fold cross validation. Let k=10 and use average RMSE as the metric for quantifying predictive error.
+# What is the average RMSE for the model in question 4 above?
+
+The new RMSE is 2.562191.
+
+```{r}
+# Suppose your data is stored in the object "Data"
+# First set a seed to ensure your results are reproducible
+set.seed(123) # use whatever number you want
+# Now randomly re-shuffle the data
+Data <- beer[sample(nrow(beer)),]
+# Define the number of folds you want
+K <- 10
+# Define a matrix to save your results into
+RSME <- matrix(0,nrow=K,ncol=1)
+# Split the row indexes into k equal parts
+kth_fold <- cut(seq(1,nrow(Data)),breaks=K,labels=FALSE)
+# Now write the for loop for the k-fold cross validation
+for(k in 1:K){
+  # Split your data into the training and test datasets
+  test_index <- which(kth_fold==k)
+  train <- Data[-test_index,]
+  test <- Data[test_index,]
+  lm2 = lm(beer_cons_liters ~ weekend + precip_mm + temp_median_c, data = train, na.action = na.omit)
+  pred1 = predict(lm2, test)
+  # Now that you've split the data, 
+  RSME[k,] <- mean((test$beer_cons_liters - pred1)^2, na.rm = T)^(1/2)
+  # You should consider using your code for question 7 above
+}
+#Calculate the average of all values in the RSME matrix here.
+mean(RSME)
+
+# Abhishek Baral (MIDS 2021) assisted in developing the for loop/troubleshooting this question.
+
+```
+
+### Question 9: Extend the model in question 4 to include interaction terms between weekend and the 
+# other two predictors. Are the interaction terms significant? 
+
+The p values were not significant. Additionally, it did not effect the R squared.
+
+```{r}
+
+lm_beer_consumption_2 <- lm(log(beer_cons_liters) ~ weekend + precip_mm + temp_median_c + weekend:precip_mm + weekend:temp_median_c, data = beer)
+summary(lm_beer_consumption_2)
+
+```
+
+
+
+### Question 10: Use your code for the k-fold cross validation from question 8 to compute the average RMSE
+# for the new model in question 9. Is the new RMSE model lower or higher? What can you infer
+# from that?
+
+2.559797 for Question 10 vs 2.562191 for Question 8, so it does make the model sightly more accurate but it is not meaningful.
+
+```{r}
+# Suppose your data is stored in the object "Data"
+# First set a seed to ensure your results are reproducible
+set.seed(123) # use whatever number you want
+# Now randomly re-shuffle the data
+Data <- beer[sample(nrow(beer)),]
+# Define the number of folds you want
+K <- 10
+# Define a matrix to save your results into
+RSME <- matrix(0,nrow=K,ncol=1)
+# Split the row indexes into k equal parts
+kth_fold <- cut(seq(1,nrow(Data)),breaks=K,labels=FALSE)
+# Now write the for loop for the k-fold cross validation
+for(k in 1:K){
+  # Split your data into the training and test datasets
+  test_index <- which(kth_fold==k)
+  train <- Data[-test_index,]
+  test <- Data[test_index,]
+  lm2 = lm(beer_cons_liters ~ weekend + precip_mm + temp_median_c + weekend:precip_mm + weekend:temp_median_c, data = train, na.action = na.omit)
+  pred1 = predict(lm2, test)
+  # Now that you've split the data, 
+  RSME[k,] <- mean((test$beer_cons_liters - pred1)^2, na.rm = T)^(1/2)
+  # You should consider using your code for question 7 above
+}
+#Calculate the average of all values in the RSME matrix here.
+mean(RSME)
+```
+
+* * *
+
+
+

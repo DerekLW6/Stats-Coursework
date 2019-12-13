@@ -1,0 +1,321 @@
+
+---
+title: "Team 5 Ladonde Study Project"
+authors: "Team 5"
+date: "10/2/2019"
+output: pdf_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F)
+```
+  
+
+```{r Importing Libraries, message=FALSE}
+library(ggplot2)
+library(ggcorrplot)
+library(arm)
+library(pROC)
+library(e1071)
+library(caret)
+library(knitr)
+library(broom)
+library(ggcorrplot)
+library(ggpubr)
+```
+```{r Importing Dataset and Preprocessing}
+
+#Importing data
+
+dataset <- read.csv(file.choose())
+dataset$X <- NULL
+dataset$treat <- factor(dataset$treat,levels=c(0,1),labels=c("Not Trained","Trained"))
+dataset$black <- factor(dataset$black,levels=c(0,1),labels=c("Not Black","Black"))
+dataset$hispan <- factor(dataset$hispan,levels=c(0,1),labels=c("Not Hispanic","Hispanic"))
+dataset$married <- factor(dataset$married,levels=c(0,1),labels=c("Not Married","Married"))
+dataset$nodegree <- factor(dataset$nodegree,levels=c(0,1),labels=c("Otherwise","DropOut"))
+```
+```{r Data Metrics, include=FALSE}
+nrow(dataset)
+str(dataset)
+table(dataset$treat)
+table(dataset$treat,dataset$black)
+table(dataset$treat,dataset$hispan)
+table(dataset$treat,dataset$married)
+table(dataset$treat,dataset$nodegree)
+colnames(dataset)
+```
+
+
+# SUMMARY 
+
+For this assignment we were working in our MIDS Assigned Teams, looking at a Dataset to determine whether vocational training through the National Support Work (NSW) to answer several key research questions on its effectiveness. To do this we used a series of methods, including Teamwork, Critical Thinking, Exploratory Data Analysis, and Logistic Regression which ultimately lead to the model below.
+
+
+
+
+###
+
+Once we had built our model we were able to answer key research questions purposed by the NSW.
+
+
+# Research Quesions
+Is there evidence that workers who receive job training tend to earn higher wages than workers who do not receive job training?
+
+
+Quantify the effect of the treatment, that is, receiving job training, on real annual earnings.
+
+
+What is a likely range for the effect of training?
+
+
+Is there any evidence that the effects differ by demographic groups?
+
+
+Are there other interesting associations with wages that are worth mentioning?
+
+
+# INTRODUCTION   
+In the 1970s, researchers in the United States ran several randomized experiments intended to evaluate public policy programs. One of these was the National Supported Work (NSW) Demonstration, in which researchers wanted to assess whether job training for disadvantaged workers influenced their wages. Eligible workers were randomly assigned either to receive job training or not to receive job training. Candidates eligible for the NSW were randomized into the program between March 1975 and July 1977.
+
+From here we read in the data from the Lalonde Study and decide to use 1978 as a response variable. The reasoning behind this is subjects that participated in the study received their job training during 1975. This meant that by 1978 they had had ample time to adjust and apply the skills they had learned in training to their work. This would allow us to truly see the effectiveness the NSW Demonstration had had. 
+
+# DATA AND EDA (Incomplete)
+Before we could build our model, we first had to do some Exploratory Data Analysis (EDA). Here we could iteratively inspect variables and determine whether they were likely to be added to our final model.
+
+For this we primarily focused on things that we felt may have an effect on the income changing in 1978, and overlaying them with whether or not that individual had been treated. From this we could make some inferences on what factors would best fit into the final model. 
+
+# There is an issue with this sections code
+```{r EDA 1 Wage in 1978 and Training,out.width='80%', fig.align='center'}
+#Plotting Distribution of Wages in 1978
+plot1 <- ggplot(data = dataset)+
+  geom_histogram(aes(re78),bins = 20)+
+  facet_grid(.~factor(treat)) + 
+  ggtitle("Distribution of Wages in 1978 (w/ zero wages)") +
+  xlab("Wages in 1978") +
+  ylab("Number of People") +
+  theme(legend.position = "none",
+        plot.title = element_text(hjust = 0.5,size = 12))
+#Plotting Distribution of Wages in 1978 without zero wages
+plot2 <- ggplot(data = dataset[which(dataset$re78>0),])+
+  geom_histogram(aes(re78),bins = 20)+
+  facet_grid(.~factor(treat)) + 
+  ggtitle("Distribution of Wages in 1978 (w/o zero wages)") +
+  xlab("Wages in 1978") +
+  ylab("Number of People") +
+  theme(legend.position = "none",
+        plot.title = element_text(hjust = 0.5,size = 6))
+#distribution of wages received in 1978 for trained and non-trained 
+plot3 <- ggplot(aes(x=as.factor(treat), y=re78), data=dataset)+
+  geom_violin(aes(fill=treat))+
+  geom_boxplot(width=0.3 ) +
+  xlab("Training Received") +
+  ylab("Wages in 1978") +
+  ggtitle("Distribution of Wages in 1978 (w/ zero wages) for Trained and Non-trained") +
+   theme(legend.position = "none",
+        plot.title = element_text(hjust = 0.5,size = 6))
+#distribution of wages received in 1978 for trained and non-trained w/o zero
+plot4 <- ggplot(aes(x=as.factor(treat), y=re78), data=dataset[which(dataset$re78>0),])+
+  geom_violin(aes(fill=treat))+
+  geom_boxplot(width=0.3) +
+  xlab("Training Received") +
+  ylab("Wages in 1978") +
+  ggtitle("Distribution of Wages in 1978 (w/o zero wages) for Trained and Non-trained") +
+   theme(legend.position = "none",
+        plot.title = element_text(hjust = 0.5,size = 6))
+#Based on plot3 and plot4 we can concurr that the median wage among trained and non-trained is almost same.
+ggarrange(plot1, plot2, plot3, plot4, nrow = 2, ncol=2)
+```
+```{r EDA 2 Training vs other Variables (1), message=FALSE, warning=FALSE, fig.height=2, fig.width=6, fig.align='center'}
+#Distribution of Education / training
+plot5 <- ggplot(data = dataset[which(dataset$re78>0),])+
+  geom_histogram(aes(x=educ, fill=treat), bins=20) +
+  xlab('Years of Education') + 
+  ylab('Number of People') +
+  ggtitle('Distribution of Training based on education')+
+  theme(legend.position = c(0.9, 0.9),
+         legend.title = element_blank(),
+        legend.text = element_text( size = 6),
+        legend.key.size =  unit(0.1, "in"),
+        legend.background = element_rect(fill="transparent", size=0.1),
+        plot.title = element_text(hjust = 0.5,size = 12))
+  
+#Distribution of Age / training
+plot6 <- ggplot(data = dataset[which(dataset$re78>0),])+
+  geom_histogram(aes(x=age, fill=factor(treat)), bins=20) +
+  xlab('Age in Years') + 
+  ylab('Number of People') +
+  ggtitle('Distribution of Training based on Age')+
+  theme(legend.position = c(0.9, 0.9),
+         legend.title = element_blank(),
+        legend.text = element_text( size = 6),
+        legend.key.size =  unit(0.1, "in"),
+        legend.background = element_rect(fill="transparent", size=0.1),
+        plot.title = element_text(hjust = 0.5,size = 6))
+  
+#Distribution of Black race / training
+plot7 <- ggplot(data = dataset[which(dataset$re78>0),])+
+  geom_bar(aes(x=black, fill=treat),width = 0.2) +
+   xlab('Race') + 
+  ylab('Number of People') +
+  ggtitle('Distribution of Training based on Black Race')+
+  theme(legend.position = c(0.9, 0.9),
+         legend.title = element_blank(),
+        legend.text = element_text( size = 6),
+        legend.key.size =  unit(0.1, "in"),
+        legend.background = element_rect(fill="transparent", size=0.1),
+        plot.title = element_text(hjust = 0.5,size = 6))
+  
+#Distribution of Hispanice Race / training
+plot8 <- ggplot(data = dataset[which(dataset$re78>0),])+
+  geom_bar(aes(x=hispan, fill=treat),width = 0.2) +
+   xlab('Race') + 
+  ylab('Number of People') +
+  ggtitle('Distribution of Training based on Hispanic Race')+
+  theme(legend.position = c(0.9, 0.9),
+         legend.title = element_blank(),
+        legend.text = element_text( size = 6),
+        legend.key.size =  unit(0.1, "in"),
+        legend.background = element_rect(fill="transparent", size=0.1),
+        plot.title = element_text(hjust = 0.5,size = 6))
+#Distribution of Marriage / training
+plot9 <- ggplot(data = dataset[which(dataset$re78>0),])+
+  geom_bar(aes(x=married, fill=treat),width = 0.2) +
+   xlab('Marriage Status') + 
+  ylab('Number of People') +
+  ggtitle('Distribution of Training based on Marriage')+
+  theme(legend.position = c(0.9, 0.9),
+         legend.title = element_blank(),
+        legend.text = element_text( size = 6),
+        legend.key.size =  unit(0.1, "in"),
+        legend.background = element_rect(fill="transparent", size=0.1),
+        plot.title = element_text(hjust = 0.5,size = 6))
+#Distribution of Degree/ training
+plot10 <- ggplot(data = dataset[which(dataset$re78>0),])+
+  geom_bar(aes(x=nodegree, fill=treat),width = 0.2) +
+   xlab('High school Degree') + 
+  ylab('Number of People') +
+  ggtitle('Distribution of Training based on Degree')+
+  theme(legend.position = c(0.9, 0.9),
+        legend.title = element_blank(),
+        legend.text = element_text( size = 6),
+        legend.key.size =  unit(0.1, "in"),
+        legend.background = element_rect(fill="transparent", size=0.1),
+        plot.title = element_text(hjust = 0.5,size = 6))
+  
+ggarrange(plot5, plot6, nrow = 1, ncol=2)
+```
+```{r EDA 2 Training vs other Variables (2), message=FALSE, warning=FALSE, out.width='80%', fig.align='center'}
+ggarrange(plot7, plot8, plot9, plot10, nrow = 2, ncol=2)
+#from plot5 it seems that people within a certain education range (7-12 years ) were more involved in the experiment
+#from plot6 it seems that people below a  certain range (30 years ) were more involved in the experiment
+#from pot7 it seems more people with black race received training as compared to non-black
+#from pot8 it seems very few people with Hispanic race received training as compared to non-hispanic
+#from plot9 it seems more non-married people received training as compared to married ones
+#from plot10 it seems more highschool drop-out people received training as compare to others
+```
+```{r EDA 3 Non-zero Wages in 1978 vs other categorical variable, out.width='80%', fig.align='center'}
+plot11 <-ggplot(data = dataset[which(dataset$re78>0),])+
+  geom_histogram(aes(x=re78, fill=treat), bins=20) +
+  xlab('Wages in 1978') + 
+  ylab('Number of People') +
+  facet_grid(.~black) + 
+  ggtitle('Distribution of Wages in 1978 among black race')+
+  theme(legend.position = c(0.9, 0.9),
+        legend.title = element_blank(),
+        legend.text = element_text( size = 6),
+        legend.key.size =  unit(0.1, "in"),
+        legend.background = element_rect(fill="transparent", size=0.1),
+        plot.title = element_text(hjust = 0.5,size = 8))
+plot12 <-ggplot(data = dataset[which(dataset$re78>0),])+
+  geom_histogram(aes(x=re78, fill=treat), bins=20) +
+  xlab('Wages in 1978') + 
+  ylab('Number of People') +
+  facet_grid(.~hispan) + 
+  ggtitle('Distribution of Wages in 1978 among hispanic race')+
+  theme(legend.position = c(0.9, 0.9),
+        legend.title = element_blank(),
+        legend.text = element_text( size = 6),
+        legend.key.size =  unit(0.1, "in"),
+        legend.background = element_rect(fill="transparent", size=0.1),
+        plot.title = element_text(hjust = 0.5,size = 8))
+plot13 <-ggplot(data = dataset[which(dataset$re78>0),])+
+  geom_histogram(aes(x=re78, fill=treat), bins=20) +
+  xlab('Wages in 1978') + 
+  ylab('Number of People') +
+  facet_grid(.~married) + 
+  ggtitle('Distribution of Wages in 1978 among Married Population')+
+  theme(legend.position = c(0.9, 0.9),
+        legend.title = element_blank(),
+        legend.text = element_text( size = 6),
+        legend.key.size =  unit(0.1, "in"),
+        legend.background = element_rect(fill="transparent", size=0.1),
+        plot.title = element_text(hjust = 0.5,size = 8))
+plot14 <-ggplot(data = dataset[which(dataset$re78>0),])+
+  geom_histogram(aes(x=re78, fill=treat), bins=20) +
+  xlab('Wages in 1978') + 
+  ylab('Number of People') +
+  facet_grid(.~nodegree) + 
+  ggtitle('Distribution of Wages in 1978 among Drop-out')+
+  theme(legend.position = c(0.9, 0.9),
+        legend.title = element_blank(),
+        legend.text = element_text( size = 6),
+        legend.key.size =  unit(0.1, "in"),
+        legend.background = element_rect(fill="transparent", size=0.1),
+        plot.title = element_text(hjust = 0.5,size = 8))
+ggarrange(plot11, plot12, plot13, plot14, nrow = 2, ncol=2)
+```
+```{r Checking Correlation Among variables }
+correl = cor(dataset[which(dataset$re78>0), sapply(dataset, is.numeric)], method = c("spearman"))
+#ggcorrplot(correl, method = 'circle')
+#no correlation above 0.6 between variables 
+```
+
+
+
+# MODELING   
+$$Income in 1978 = \beta_0 + \beta_1 Treatment + \beta_2 Education + \beta_3 Income in 1974 + \epsilon ,  \epsilon\ \sim N(0, variance^2)$$  
+
+
+
+
+```{r Modeling - Full, include=FALSE}
+full_model <- lm(re78~treat+age+educ+black+hispan+married+nodegree+re74, data=dataset[which(dataset$re78>0),])
+Stepwise_model = stepAIC(full_model, direction='both', method='leapSeq')
+#summary(Stepwise_model)
+#Ouput of stepwise -> re78 ~ treat + educ + black + re74
+```
+```{r Modeling - After Stepwise}
+fit1 <- lm(re78 ~ treat + educ + black + re74, data=dataset[which(dataset$re78>0),])
+#summary(fit1)
+#plot(fit1, which=1)
+#removing black race 
+fit2 <- lm(re78 ~ treat + educ + re74, data=dataset[which(dataset$re78>0),])
+#summary(fit2)
+#plot(fit2, which=1)
+#anova(fit1,fit2)
+#black race removal supported by ANOVA
+#Addning age
+fit3 <- lm(re78 ~ treat + educ + re74 + age, data=dataset[which(dataset$re78>0),])
+#summary(fit3)
+#plot(fit3, which=1)
+#anova(fit2,fit3)
+#Age is coming as signinficant in ANOVA
+fit3 <- lm(re78 ~ treat + educ + re74 + age, data=dataset[which(dataset$re78>0),])
+#summary(fit3)
+#plot(fit3, which=1)
+```
+```{r Modeling - Using interactions}
+#adding interaction terms 
+fit4 <- lm(re78 ~ treat + educ + re74 + age , data=dataset[which(dataset$re78>0),])
+fit4_out = tidy(fit4)
+# What's this?
+knitr::kable(
+  fit4_out, 
+  format = 'markdown',
+  booktabs = T
+)
+par(mfrow=c(2,2))
+plot(fit4)
+summary(fit4)
+confint.default(fit4)
+```
